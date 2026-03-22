@@ -1,0 +1,215 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
+
+/* Amplify theme - Light theme with navy blue & red */
+
+@layer base {
+  :root {
+    /* Core brand colors - LIGHT THEME */
+    --background: 0 0% 97%;
+    --foreground: 213 44% 26%;
+
+    /* Blue palette - Navy blue */
+    --blue-50: 213 44% 96%;
+    --blue-100: 213 44% 90%;
+    --blue-200: 213 44% 80%;
+    --blue-300: 213 44% 65%;
+    --blue-400: 213 44% 50%;
+    --blue-500: 213 44% 40%;
+    --blue-600: 213 44% 32%;
+    --blue-700: 213 44% 26%;
+    --blue-800: 213 44% 20%;
+    --blue-900: 213 44% 15%;
+
+    /* Red accent */
+    --red-400: 0 100% 55%;
+    --red-500: 0 100% 50%;
+    --red-600: 0 92% 45%;
+
+    /* Primary - Dark Navy Blue */
+    --primary: 213 44% 26%;
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 213 44% 40%;
+
+    /* Secondary - Light background */
+    --secondary: 0 0% 100%;
+    --secondary-foreground: 213 44% 26%;
+
+    /* Accent - Bright Red */
+    --accent: 0 100% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    /* Cards & surfaces */
+    --card: 0 0% 100%;
+    --card-foreground: 213 44% 26%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 213 44% 26%;
+
+    /* Muted elements */
+    --muted: 213 30% 92%;
+    --muted-foreground: 213 20% 50%;
+
+    /* Destructive */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Borders & inputs */
+    --border: 213 30% 88%;
+    --input: 213 30% 90%;
+    --ring: 213 44% 26%;
+
+    --radius: 0.5rem;
+
+    /* Glass effects */
+    --glass-bg: 0 0% 100% / 0.9;
+    --glass-border: 213 30% 85% / 0.5;
+    --glass-shadow: 0 0 0% / 0.08;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(213 44% 26%), hsl(213 44% 40%));
+    --gradient-accent: linear-gradient(135deg, hsl(0 100% 50%), hsl(0 92% 45%));
+    --gradient-hero: linear-gradient(180deg, hsl(213 44% 26%) 0%, hsl(213 44% 40%) 100%);
+
+    /* Shadows */
+    --shadow-sm: 0 2px 8px -2px hsl(213 44% 26% / 0.1);
+    --shadow-md: 0 8px 24px -8px hsl(213 44% 26% / 0.15);
+    --shadow-lg: 0 16px 48px -12px hsl(213 44% 26% / 0.2);
+    --shadow-glow: 0 0 40px -10px hsl(0 100% 50% / 0.4);
+
+    /* Sidebar */
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 213 44% 26%;
+    --sidebar-primary: 213 44% 26%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 100% 50%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 213 30% 88%;
+    --sidebar-ring: 213 44% 26%;
+  }
+
+  .dark {
+    --background: 213 44% 10%;
+    --foreground: 0 0% 100%;
+
+    --card: 213 44% 15%;
+    --card-foreground: 0 0% 100%;
+    --popover: 213 44% 15%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 213 80% 60%;
+    --primary-foreground: 213 44% 10%;
+
+    --secondary: 213 44% 20%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 213 44% 20%;
+    --muted-foreground: 213 30% 70%;
+
+    --accent: 0 100% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 213 44% 20%;
+    --input: 213 44% 20%;
+    --ring: 213 80% 60%;
+
+    --glass-bg: 213 44% 15% / 0.8;
+    --glass-border: 213 44% 25% / 0.5;
+    --glass-shadow: 213 80% 60% / 0.15;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Montserrat', system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', system-ui, sans-serif;
+  }
+}
+
+@layer components {
+  /* Glass card effect */
+  .glass-card {
+    @apply relative overflow-hidden rounded-lg;
+    background: hsl(var(--glass-bg));
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid hsl(var(--glass-border));
+    box-shadow: var(--shadow-md);
+  }
+
+  .glass-card-accent {
+    @apply relative overflow-hidden rounded-lg;
+    background: hsl(0 100% 50% / 0.08);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid hsl(0 100% 50% / 0.2);
+    box-shadow: var(--shadow-md);
+  }
+
+  /* Section backgrounds */
+  .section-primary {
+    @apply relative;
+    background: hsl(213 44% 26%);
+    color: white;
+  }
+
+  .section-white {
+    @apply relative bg-background text-foreground;
+  }
+
+  /* Gradient text */
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-accent);
+  }
+
+  .text-gradient-primary {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-primary);
+  }
+
+  /* Floating animation */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  /* Accent button */
+  .btn-accent {
+    @apply px-6 py-3 rounded-lg font-semibold transition-all duration-300;
+    background: var(--gradient-accent);
+    color: white;
+  }
+
+  .btn-accent:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow);
+  }
+
+  /* Section divider */
+  .section-divider {
+    @apply w-24 h-1 rounded-full mx-auto;
+    background: var(--gradient-accent);
+  }
+}
