@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Linkedin, Twitter, Mail } from "lucide-react";
+import harshitPhoto from "@/data/people/Harshit.png";
+import snehalPhoto from "@/data/people/Snehal.png";
 
 const teamMembers = [
   {
@@ -12,17 +14,17 @@ const teamMembers = [
     bio: "Leading AI initiatives and technology integration",
   },
   {
+    name: "Nithin Nayak",
+    role: "Data Scientist",
+    image: "/src/data/people/nithin_nayak 2.jpg",
+    bio: "Expert in data science and analytics",
+  },
+  {
     name: "Preetham Saldanha",
     role: "AI/ML Engineer",
     department: "Technology Integration and Transformation",
     image: "/src/data/people/Preetham-Photo-Compressed.jpg",
     bio: "AI/ML Engineer specializing in technology integration",
-  },
-  {
-    name: "Nithin Nayak",
-    role: "Data Scientist",
-    image: "/src/data/people/nithin_nayak 2.jpg",
-    bio: "Expert in data science and analytics",
   },
   {
     name: "Karthika Ravichandran",
@@ -33,12 +35,14 @@ const teamMembers = [
     name: "Harshith Muttana",
     role: "AI/ML Engineer",
     department: "Technology Integration and Transform",
+    image: harshitPhoto,
     bio: "AI/ML Engineer driving technology transformation",
   },
   {
     name: "Snehal Gloria Dsouza",
     role: "Junior AI/ML Engineer",
     department: "Technology Integration and Transformation",
+    image: snehalPhoto,
     bio: "Junior AI/ML Engineer contributing to technology integration",
   },
 ];
@@ -82,9 +86,9 @@ const TeamSection = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group"
+              className="group h-full"
             >
-              <div className="glass-card bg-white/95 overflow-hidden hover:shadow-2xl transition-all duration-300">
+              <div className="glass-card h-full bg-white/95 overflow-hidden hover:shadow-2xl transition-all duration-300 flex flex-col">
                 {/* Image */}
                 <div className="relative overflow-hidden">
                   <img
@@ -109,14 +113,14 @@ const TeamSection = () => {
                 </div>
 
                 {/* Info */}
-                <div className="p-5 text-center">
-                  <h3 className="font-display font-semibold text-foreground mb-1">
+                <div className="p-5 text-center flex-1 flex flex-col">
+                  <h3 className="font-display font-semibold text-foreground mb-1 min-h-[3rem] flex items-center justify-center">
                     {member.name}
                   </h3>
-                  <p className="text-accent text-sm font-semibold mb-2">
+                  <p className="text-accent text-sm font-semibold mb-2 min-h-[2.5rem] flex items-center justify-center">
                     {member.role}
                   </p>
-                  <p className="text-muted-foreground text-xs">
+                  <p className="text-muted-foreground text-xs min-h-[3rem] flex items-start justify-center">
                     {member.bio}
                   </p>
                 </div>

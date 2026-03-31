@@ -26,6 +26,7 @@ const cardHoverVariants = {
 
 const BUInteractionDetail = () => {
   const { id } = useParams<{ id: string }>();
+  const normalizedId = decodeURIComponent(id ?? "").trim().toLowerCase();
   const [showPdfViewer, setShowPdfViewer] = useState(false);
 
   const summaryRef = useRef(null);
@@ -42,7 +43,16 @@ const BUInteractionDetail = () => {
   const isRisksInView = useInView(risksRef, { once: true, margin: "-100px" });
   const isLimitationsInView = useInView(limitationsRef, { once: true, margin: "-100px" });
 
-  const interaction = aicoeBuInteractions.find(r => r.id === id);
+  const interaction = aicoeBuInteractions.find((r) => {
+    const interactionId = r.id.trim().toLowerCase();
+    if (interactionId === normalizedId) {
+      return true;
+    }
+
+    const compactInteractionId = interactionId.replace(/[-_\s]+/g, "");
+    const compactIncomingId = normalizedId.replace(/[-_\s]+/g, "");
+    return compactInteractionId === compactIncomingId;
+  });
 
   if (!interaction) {
     return <Navigate to="/404" replace />;

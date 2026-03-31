@@ -63,35 +63,12 @@ const AICOE_BU_InteractionSection = () => {
                   {interaction.description}
                 </p>
 
-                {/* CTA for Jasmin */}
-                {interaction.id === "jasmin-speech-to-text" && (
-                  <Link
-                    to="/jasmin"
-                    className="inline-flex items-center gap-2 text-accent font-semibold text-sm group-hover:gap-3 transition-all mt-auto"
-                  >
-                    View More Details <ArrowRight className="w-4 h-4" />
-                  </Link>
-                )}
-
-                {/* CTA for Churn Prediction */}
-                {interaction.id === "churn-prediction-nordic" && (
-                  <Link
-                    to="/bu-interaction/churn-prediction-nordic"
-                    className="inline-flex items-center gap-2 text-accent font-semibold text-sm group-hover:gap-3 transition-all mt-auto"
-                  >
-                    View More Details <ArrowRight className="w-4 h-4" />
-                  </Link>
-                )}
-
-                {/* CTA for Routine Search */}
-                {interaction.id === "routines-usecase" && (
-                  <Link
-                    to="/bu-interaction/routines-usecase"
-                    className="inline-flex items-center gap-2 text-accent font-semibold text-sm group-hover:gap-3 transition-all mt-auto"
-                  >
-                    View More Details <ArrowRight className="w-4 h-4" />
-                  </Link>
-                )}
+                <Link
+                  to={interaction.id === "jasmin-speech-to-text" ? "/jasmin" : `/bu-interaction/${interaction.id}`}
+                  className="inline-flex items-center gap-2 text-accent font-semibold text-sm group-hover:gap-3 transition-all mt-auto"
+                >
+                  View More Details <ArrowRight className="w-4 h-4" />
+                </Link>
               </div>
             </motion.div>
           ))}

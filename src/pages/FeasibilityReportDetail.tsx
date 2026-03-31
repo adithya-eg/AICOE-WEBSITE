@@ -25,6 +25,7 @@ const cardHoverVariants = {
 
 const FeasibilityReportDetail = () => {
   const { id } = useParams<{ id: string }>();
+  const normalizedId = decodeURIComponent(id ?? "").trim().toLowerCase();
   
   const summaryRef = useRef(null);
   const objectivesRef = useRef(null);
@@ -40,7 +41,17 @@ const FeasibilityReportDetail = () => {
   const isRisksInView = useInView(risksRef, { once: true, margin: "-100px" });
   const isLimitationsInView = useInView(limitationsRef, { once: true, margin: "-100px" });
 
-  const report = feasibilityReports.find(r => r.id === id);
+  const report = feasibilityReports.find((r) => {
+    const reportId = r.id.trim().toLowerCase();
+    if (reportId === normalizedId) {
+      return true;
+    }
+
+    // Allow legacy URL styles where separators may differ.
+    const compactReportId = reportId.replace(/[-_\s]+/g, "");
+    const compactIncomingId = normalizedId.replace(/[-_\s]+/g, "");
+    return compactReportId === compactIncomingId;
+  });
 
   if (!report) {
     return <Navigate to="/404" replace />;
