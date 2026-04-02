@@ -30,6 +30,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import jiraBanner from "@/data/images/JIRA BANNER MAIN.png";
 import jiraUI from "@/data/images/jira 1.png";
+import jiraCloudArch from "@/CLOUD ARCHITECTURE/JIRA.png";
+import ImageLightbox from "@/components/ImageLightbox";
 
 // Core Features
 const coreFeatures = [
@@ -782,39 +784,25 @@ const JiraStoryGauge = () => {
               System Architecture
             </h2>
             <p className="text-muted-foreground text-lg">
-              Visual representations of Jira Story Gauge's cloud architecture and functional flow
+              Visual representation of Jira Story Gauge's cloud infrastructure and system architecture
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="max-w-4xl mx-auto">
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
               className="glass-card p-8 bg-white"
             >
               <h3 className="font-display font-bold text-xl text-foreground mb-4">
-                Cloud Diagram
+                Cloud Architecture Diagram
               </h3>
-              <div className="aspect-video bg-gray-100 rounded-lg flex items-center justify-center">
-                <span className="text-gray-500">Cloud Diagram - Link to be updated</span>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="glass-card p-8 bg-white"
-            >
-              <h3 className="font-display font-bold text-xl text-foreground mb-4">
-                Functional Diagram
-              </h3>
-              <div className="aspect-video bg-gray-100 rounded-lg flex items-center justify-center">
-                <span className="text-gray-500">Functional Diagram - Link to be updated</span>
-              </div>
+              <ImageLightbox
+                src={jiraCloudArch}
+                alt="Jira Story Gauge Cloud Architecture Diagram"
+              />
             </motion.div>
           </div>
         </div>

@@ -29,7 +29,7 @@ export const feasibilityReports: FeasibilityReport[] = [
     description: "Intelligent agent that scans Git repositories to detect exposed secrets, API keys, and sensitive information using advanced detection methods including pattern-based, entropy-based, and AI-enhanced analysis.",
     icon: Shield,
     category: "AI & Security",
-    preparedBy: "AI COE Team",
+    preparedBy: "AICOE Team",
     version: "v1.0",
     pdfPath: "/pdfs/feasibilities/Feasibility Study for SecOps Agent (2).pdf",
     executiveSummary: `The SecOps Agent represents a comprehensive AI-powered security solution designed to proactively identify and prevent data leaks in Git repositories. By implementing a triple detection engine combining pattern-based scanning, entropy analysis, and detect-secrets library integration, the system addresses critical security challenges in modern development workflows. The agent automatically scans repositories for exposed secrets, API keys, credentials, and sensitive information, providing real-time alerts through Microsoft Teams with confidence scoring to minimize false positives. This solution is particularly crucial in today's collaborative development environment where code sharing increases the risk of accidental secret exposure. The system integrates seamlessly with GitHub API for repository access and employs intelligent filtering and rate limiting to ensure efficient, scalable security monitoring.`,
@@ -79,7 +79,7 @@ export const feasibilityReports: FeasibilityReport[] = [
     description: "An enterprise-grade AI system built using a Retrieval-Augmented Generation (RAG) architecture that stores documents, searches them intelligently, retrieves relevant chunks, generates grounded answers, and provides citations.",
     icon: Bot,
     category: "AI & Cloud Solutions",
-    preparedBy: "AI COE Team",
+    preparedBy: "AICOE Team",
     version: "v1.0",
     pdfPath: "/pdfs/feasibilities/Azure_Rag_Chatbot.pdf",
     executiveSummary: `The Azure RAG Chatbot is an enterprise-grade AI system built using a Retrieval-Augmented Generation (RAG) architecture. Instead of relying only on a Large Language Model (LLM) (which can hallucinate or guess answers), this system stores documents, searches them intelligently, retrieves relevant chunks, generates grounded answers, and provides citations. This makes it accurate, traceable, scalable, and enterprise-ready. It integrates Azure OpenAI, Azure AI Search, Azure Blob Storage, PostgreSQL, Docling, and Streamlit (Frontend). The study concludes that the solution is technically feasible, production-ready, and suitable for enterprise deployment with manageable risks.`,
@@ -376,7 +376,7 @@ export const feasibilityReports: FeasibilityReport[] = [
     description: "Time series forecasting system for workspace resource planning, optimizing facility management and energy usage through SARIMA-based prediction models.",
     icon: BarChart3,
     category: "AI & Analytics",
-    preparedBy: "AI COE Team",
+    preparedBy: "AICOE Team",
     version: "v1.0",
     pdfPath: "/pdfs/feasibilities/Worksense - Workspace Forecasting_FeasibilityReport (2).pdf",
     executiveSummary: `The Worksense Workspace Forecasting project aims to predict future space bookings and occupancy using historical utilization data. By applying SARIMA (Seasonal ARIMA) models, the system captures recurring patterns and supports decision making for effective workspace utilization, energy management, and facility planning. The solution handles data preparation, feature engineering, and external influence factors like holidays and weather to deliver accurate forecasts, improve efficiency, and reduce over/under utilization risks.`,
@@ -426,7 +426,7 @@ export const feasibilityReports: FeasibilityReport[] = [
     description: "Intelligent AI system that monitors cloud costs, analyzes resource usage, and helps organizations reduce unnecessary spending through automated optimization and real-time insights.",
     icon: Wallet,
     category: "AI & Finance",
-    preparedBy: "AI COE Team",
+    preparedBy: "AICOE Team",
     version: "v1.0",
     pdfPath: "/pdfs/feasibilities/Feasibility Study for FinOps Agent (1).pdf",
     executiveSummary: `The FinOps Agent is a comprehensive AI-based system designed to revolutionize cloud cost management for organizations using AWS services. By combining real-time monitoring, intelligent analysis, and automated optimization actions, the system addresses the critical challenge of controlling escalating cloud expenses. The agent continuously tracks resource usage, identifies cost inefficiencies, and implements automated cost-saving measures while providing actionable insights through customizable dashboards and alerts. This solution bridges the gap between traditional financial operations and modern cloud infrastructure, enabling organizations to achieve optimal cost efficiency without compromising performance or security.`,
@@ -469,25 +469,6 @@ export const feasibilityReports: FeasibilityReport[] = [
     conclusion: "The FinOps Agent represents a significant advancement in cloud cost management, successfully addressing the limitations of existing AWS tools through AI-powered automation and real-time insights. By providing customizable workflows, automated optimization, and comprehensive visualization, it enables organizations to achieve substantial cost savings while maintaining operational efficiency. The system's modular architecture supports future enhancements including multi-cloud support, predictive analytics, and advanced automation capabilities. While it requires proper setup and monitoring, the benefits of reduced cloud expenses and improved financial visibility make it a valuable investment for any organization serious about cloud cost optimization."
   },
   {
-    id: "devops-agent",
-    title: "DevOps Agent (Built as part of AI Build Challenge 2025)",
-    shortTitle: "DevOps Agent",
-    tagline: "AI-Powered DevOps Automation Agent",
-    description: "Intelligent agent for DevOps operations and automation.",
-    icon: Zap,
-    category: "AI & DevOps",
-    preparedBy: "AI COE Team",
-    version: "v1.0",
-    pdfPath: "",
-    executiveSummary: "AI agent for DevOps automation.",
-    objectives: ["Automate DevOps tasks", "Improve efficiency"],
-    keyTechnologies: ["AI", "DevOps tools"],
-    theoreticalBackground: ["Agent-based automation"],
-    risks: [{ risk: "Reliability", mitigation: "Testing" }],
-    limitations: ["Complexity"],
-    conclusion: "Enhances DevOps processes."
-  },
-  {
     id: "invoice-assistant",
     title: "EG Invoice Assistant - AI-Powered Invoice Processing",
     shortTitle: "EG Invoice Assistant",
@@ -495,7 +476,7 @@ export const feasibilityReports: FeasibilityReport[] = [
     description: "An AI-powered system that reads invoices and receipts, automatically extracts important data, and converts it into structured JSON format for efficient financial workflow management.",
     icon: Receipt,
     category: "AI & Finance",
-    preparedBy: "AI COE Team",
+    preparedBy: "AICOE Team",
     version: "v1.0",
     pdfPath: "/pdfs/feasibilities/Brandsoft - EG Invoice Assistant_FeasibilityReport (2).pdf",
     executiveSummary: `The EG Invoice Assistant is an AI-powered system that reads invoices and receipts, automatically extracts important data, and converts it into structured JSON format. It helps finance teams save time and avoid manual work by intelligently processing financial documents. The system combines FastAPI backend, AWS cloud services, and Claude AI for accurate data extraction with confidence scores.`,
@@ -538,5 +519,61 @@ export const feasibilityReports: FeasibilityReport[] = [
       "May need manual intervention for highly irregular document formats"
     ],
     conclusion: "The EG Invoice Assistant represents a significant advancement in automated financial document processing. By combining AI-powered extraction with cloud-native architecture, it provides a scalable, accurate, and efficient solution for invoice processing workflows. The system's ability to transform unstructured documents into structured data reduces manual effort, minimizes errors, and improves overall financial operation efficiency."
+  },
+  {
+    id: "on-prem-chatbot-v1",
+    title: "On-Premises Chatbot - Version 1 (Danish Defense)",
+    shortTitle: "On-Prem Chatbot",
+    tagline: "Secure On-Premises AI Chatbot for Danish Defense",
+    description: "A fully air-gapped, on-premises AI chatbot solution built for Danish Defense that enables secure document Q&A and knowledge retrieval without any data leaving the controlled environment — leveraging local LLMs and RAG on classified internal documents.",
+    icon: Shield,
+    category: "AI & Security",
+    preparedBy: "AICOE Team",
+    version: "v1.0",
+    pdfPath: "/pdfs/feasibilities/onpremchatbot v1 .pdf",
+    executiveSummary: `The On-Premises Chatbot Version 1 is a secure, fully isolated AI-powered conversational system designed specifically for Danish Defense. Unlike cloud-based solutions, this chatbot operates entirely within the organisation's own infrastructure, ensuring that no sensitive data, classified documents, or user queries ever leave the controlled environment. The system uses Retrieval-Augmented Generation (RAG) with locally deployed Large Language Models (LLMs) to provide accurate, context-aware answers from internal documentation and knowledge bases. The solution addresses the critical security requirement of zero external data transmission while still delivering the productivity benefits of modern AI assistance. It supports defence personnel in rapidly accessing procedures, regulations, technical manuals, and operational guidelines through a natural language interface.`,
+    objectives: [
+      "Zero Data Exfiltration - Ensure all processing, storage, and inference happens exclusively within the on-premises environment with no external API calls",
+      "Secure Document Q&A - Enable defence personnel to query classified manuals, procedures, and operational documents using natural language",
+      "Local LLM Deployment - Deploy and run a capable open-source LLM entirely on-premises without dependency on cloud AI providers",
+      "RAG Pipeline Implementation - Build a Retrieval-Augmented Generation pipeline over internal document repositories for accurate, grounded responses",
+      "Role-Based Access Control - Restrict document access and query capabilities based on user clearance level and organisational role",
+      "Air-Gap Compatible Architecture - Design the system to function in fully air-gapped networks without any internet connectivity requirements"
+    ],
+    keyTechnologies: [
+      "Local LLM (Ollama / LLaMA / Mistral) - Open-source large language models deployed and run fully on-premises without external API calls",
+      "RAG (Retrieval-Augmented Generation) - Combines local vector search with LLM generation to provide grounded, document-backed responses",
+      "ChromaDB / FAISS - On-premises vector database for storing and querying document embeddings",
+      "LangChain / LlamaIndex - Orchestration framework for building the RAG pipeline and managing LLM interactions",
+      "FastAPI - Lightweight Python backend for serving the chatbot API within the local network",
+      "React Frontend - Secure web-based chat interface deployable on internal servers",
+      "Active Directory / LDAP - Integration with existing defence identity systems for user authentication and role management",
+      "On-Premises GPU Server - Local GPU infrastructure for running inference on the deployed LLM models"
+    ],
+    theoreticalBackground: [
+      "Air-Gap Security Model: The system is designed to operate in isolated networks with no internet connectivity, meeting the highest security classification requirements for defence environments",
+      "Retrieval-Augmented Generation (RAG): RAG prevents LLM hallucinations by first retrieving relevant document chunks from the vector store, then grounding the LLM response in retrieved context — ensuring factual accuracy",
+      "Local LLM Inference: Open-source models such as LLaMA, Mistral, or Phi can be quantised (GGUF format) and run on modest GPU hardware, making on-premises deployment feasible without expensive cloud compute",
+      "Vector Embeddings: Documents are chunked and converted into numerical vector representations using a local embedding model, enabling semantic similarity search without external services",
+      "Document Ingestion Pipeline: Uploaded documents are processed through chunking, embedding, and indexing into the local vector store — making them instantly queryable by the chatbot",
+      "Role-Based Filtering: Query results are filtered at the retrieval layer based on the authenticated user's clearance level, preventing unauthorised access to restricted documents"
+    ],
+    risks: [
+      { risk: "LLM inference performance on local hardware", mitigation: "Use quantised models (4-bit/8-bit GGUF) optimised for available GPU hardware; benchmark multiple model sizes" },
+      { risk: "Answer accuracy for highly technical military content", mitigation: "Fine-tune embeddings on domain vocabulary; implement confidence scoring and fallback to exact document search" },
+      { risk: "Document ingestion scalability for large repositories", mitigation: "Implement incremental ingestion and background processing pipelines with status tracking" },
+      { risk: "User authentication integration with legacy defence systems", mitigation: "Support standard LDAP/Active Directory integration with configurable authentication adapters" },
+      { risk: "Model updates requiring internet access", mitigation: "Design offline model update workflow using physically transferred media (USB/secured drive)" },
+      { risk: "Single point of failure in on-prem infrastructure", mitigation: "Deploy redundant server nodes with automatic failover for high availability" }
+    ],
+    limitations: [
+      "LLM response quality is constrained by the capabilities of locally deployable open-source models compared to cloud-hosted frontier models",
+      "Requires dedicated GPU hardware for acceptable inference latency at production load",
+      "Model updates and knowledge base refreshes require manual offline processes in fully air-gapped deployments",
+      "Initial document ingestion of large classified repositories may require significant processing time",
+      "Limited support for real-time data feeds or live system integrations due to air-gap constraints",
+      "Multilingual support depends on availability of suitably capable multilingual open-source models"
+    ],
+    conclusion: "The On-Premises Chatbot Version 1 demonstrates a technically feasible and strategically sound approach to deploying AI-powered knowledge retrieval within highly secure, air-gapped defence environments. By combining local LLM inference with RAG architecture and role-based access control, the system delivers meaningful productivity improvements for defence personnel without compromising the stringent data security requirements of classified operations. The solution is extensible to future versions with enhanced model capabilities, broader document format support, and multi-language handling as open-source LLM technology continues to mature."
   }
 ];

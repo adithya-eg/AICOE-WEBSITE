@@ -2,12 +2,13 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
-import { MessageSquare, Bot, FileSearch, BarChart3, ShieldCheck, FileText, ArrowRight, Receipt } from "lucide-react";
-import sashaUI from "@/data/images/sasha ui.png";
+import { MessageSquare, Bot, FileSearch, BarChart3, FileText, ArrowRight, Zap } from "lucide-react";
+import sashaUI from "@/data/images/SashaBanner.png";
 import aiAssistantUI from "@/data/images/AI-ASSISTANT 1.png";
 import jasminBanner from "@/data/images/JASMIN BANNER.png";
 import jiraBanner from "@/data/images/JIRA BANNER MAIN.png";
 import docTransImage from "@/data/images/doctrans.png";
+import pitchSyncUI from "@/data/images/Pitchsyn ui.png";
 
 const products = [
   {
@@ -47,11 +48,13 @@ const products = [
     link: "/jira-story-gauge",
   },
   {
-    name: "PitchSync",
-    tagline: "Intelligent Pitch Synchronization",
-    description: "AI-powered pitch synchronization for presentations and communications.",
-    icon: MessageSquare,
-    features: ["Pitch Analysis", "Synchronization", "AI Enhancement"],
+    name: "Pitch‑Sync",
+    tagline: "AI-Powered Startup Pitch Platform",
+    description: "Create, refine, and evaluate startup pitches using automated multi-agent analysis. Guides users through structured phases, scores answers in real time, and generates investor-ready pitch content.",
+    icon: Zap,
+    features: ["Phase Workflow", "Real-time Scoring", "Pitch Generation"],
+    image: pitchSyncUI,
+    link: "/pitch-sync",
   },
   {
     name: "DocTrans",
@@ -60,15 +63,9 @@ const products = [
     icon: FileText,
     features: ["Format Conversion", "Data Extraction", "Smart Parsing"],
     image: docTransImage,
+    imageFit: "contain" as const,
+    imageBg: "#ffffff",
     link: "/doc-trans",
-  },
-  {
-    name: "EG Invoice Assistant",
-    tagline: "AI-Powered Invoice Processing",
-    description: "Automatically extract and structure data from invoices and receipts using advanced AI, saving time and reducing manual errors.",
-    icon: Receipt,
-    features: ["AI Data Extraction", "JSON Output", "Multi-format Support"],
-    link: "/invoice-assistant",
   },
 ];
 
@@ -116,16 +113,19 @@ const ProductsSection = () => {
               <div className="glass-card h-full p-6 lg:p-8 bg-white/95 hover:bg-white transition-all duration-300 hover:shadow-2xl">
                 {/* Product Image */}
                 {product.image && (
-                  <div className="mb-6 -mx-6 -mt-6 lg:-mx-8 lg:-mt-8">
+                  <div
+                    className="mb-6 -mx-6 -mt-6 lg:-mx-8 lg:-mt-8 flex items-center justify-center"
+                    style={{ backgroundColor: (product as any).imageBg ?? "transparent" }}
+                  >
                     <img
                       src={product.image}
                       alt={product.name}
-                      className="w-full h-40 object-cover rounded-t-lg"
+                      className={`w-full rounded-t-lg ${ (product as any).imageFit === "contain" ? "h-44 object-contain p-6" : "h-40 object-cover" }`}
                     />
                   </div>
                 )}
-                
-                {/* Icon */}
+
+                {/* Icon — shown when no image */}
                 {!product.image && (
                   <div className="w-14 h-14 rounded-lg bg-gradient-primary flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                     <product.icon className="w-7 h-7 text-primary-foreground" />
@@ -156,21 +156,12 @@ const ProductsSection = () => {
                 </div>
 
                 {/* CTA */}
-                {product.link ? (
-                  <Link
-                    to={product.link}
-                    className="inline-flex items-center gap-2 text-accent font-semibold text-sm group-hover:gap-3 transition-all"
-                  >
-                    Learn More <ArrowRight className="w-4 h-4" />
-                  </Link>
-                ) : (
-                  <a
-                    href="#contact"
-                    className="inline-flex items-center gap-2 text-accent font-semibold text-sm group-hover:gap-3 transition-all"
-                  >
-                    Learn More <ArrowRight className="w-4 h-4" />
-                  </a>
-                )}
+                <Link
+                  to={product.link}
+                  className="inline-flex items-center gap-2 text-accent font-semibold text-sm group-hover:gap-3 transition-all"
+                >
+                  Learn More <ArrowRight className="w-4 h-4" />
+                </Link>
               </div>
             </motion.div>
           ))}

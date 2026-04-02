@@ -29,7 +29,7 @@ export const prototypes: Prototype[] = [
     description: "An AI-powered system that reads invoices and receipts, automatically extracts important data, and converts it into structured JSON format for efficient financial workflow management.",
     icon: Receipt,
     category: "AI & Finance",
-    preparedBy: "AI COE Team",
+    preparedBy: "AICOE Team",
     version: "v1.0",
     pdfPath: "/pdfs/feasibilities/Brandsoft - EG Invoice Assistant_FeasibilityReport (2).pdf",
     executiveSummary: "The EG Invoice Assistant is an AI-powered system that reads invoices and receipts, automatically extracts important data, and converts it into structured JSON format. It helps finance teams save time and avoid manual work by intelligently processing financial documents.",
@@ -74,7 +74,7 @@ export const prototypes: Prototype[] = [
     description: "Convert natural language queries to SQL statements for database interaction.",
     icon: Database,
     category: "AI & Data",
-    preparedBy: "AI COE Team",
+    preparedBy: "AICOE Team",
     version: "v1.0",
     pdfPath: "",
     executiveSummary: "NL to SQL conversion.",
@@ -87,21 +87,61 @@ export const prototypes: Prototype[] = [
   },
   {
     id: "on-prem-chatbot-danish-defense",
-    title: "On-Prem Chatbot - Version 1 - Danish Defense",
-    shortTitle: "On-Prem Chatbot",
-    tagline: "Secure On-Premises Chatbot for Danish Defense",
-    description: "On-premises chatbot solution for secure communications in defense applications.",
+    title: "On-Prem Chatbot - Version 2 - Danish Defense",
+    shortTitle: "On-Prem Chatbot v2",
+    tagline: "Enhanced Secure On-Premises AI Chatbot for Danish Defense",
+    description: "Version 2 of the fully air-gapped, on-premises AI chatbot for Danish Defense — featuring improved LLM capabilities, multi-document RAG, enhanced role-based access control, and a polished chat UI — all running entirely within the controlled environment with zero external data transmission.",
     icon: Bot,
     category: "AI & Security",
-    preparedBy: "AI COE Team",
-    version: "v1.0",
-    pdfPath: "",
-    executiveSummary: "Secure chatbot for defense.",
-    objectives: ["Secure chat", "On-prem"],
-    keyTechnologies: ["AI", "Security"],
-    theoreticalBackground: ["Secure AI"],
-    risks: [{ risk: "Security breaches", mitigation: "Isolation" }],
-    limitations: ["Scalability"],
-    conclusion: "For sensitive applications."
+    preparedBy: "AICOE Team",
+    version: "v2.0",
+    pdfPath: "/pdfs/prototypes/onpremchatbot v2.pdf",
+    executiveSummary: `On-Prem Chatbot Version 2 is an enhanced iteration of the secure, air-gapped AI chatbot solution designed for Danish Defense. Building on Version 1's foundational RAG pipeline and local LLM deployment, Version 2 introduces significant improvements across all layers — a more capable locally deployed language model, an expanded multi-source document ingestion pipeline, refined role-based access control with clearance-level filtering, and a redesigned user interface optimised for operational use.
+
+The system continues to operate entirely within the organisation's on-premises infrastructure, ensuring classified documents, user queries, and generated responses never leave the controlled environment. Version 2 addresses the key limitations identified in Version 1: inference latency, multi-document cross-referencing accuracy, and user experience friction. The solution now supports richer query handling, session memory for multi-turn conversations, and structured document citation in responses.`,
+    objectives: [
+      "Upgrade Local LLM - Deploy a higher-capability quantised model for improved response quality and instruction-following within on-premises hardware constraints",
+      "Multi-Source RAG Pipeline - Extend document ingestion to support multiple simultaneous knowledge bases with cross-source retrieval and ranking",
+      "Session Memory & Multi-Turn Conversations - Implement conversation history context so users can ask follow-up questions without repeating prior context",
+      "Structured Document Citations - Return answers with precise source citations (document name, section, page) to enable users to verify responses",
+      "Enhanced Role-Based Access Control - Enforce granular clearance-level filtering at the retrieval layer with audit logging of all queries per user",
+      "Improved UI/UX - Redesigned chat interface with message history, document source display, confidence indicators, and admin panel for knowledge base management",
+      "Performance Optimisation - Reduce inference latency through model caching, optimised chunking strategies, and hardware-aware quantisation settings"
+    ],
+    keyTechnologies: [
+      "Local LLM v2 (Ollama + LLaMA 3 / Mistral 7B Instruct) - Upgraded quantised models delivering better reasoning and instruction-following on-premises",
+      "LangChain with Conversation Memory - Maintains multi-turn conversation context for coherent follow-up query handling",
+      "ChromaDB (Persistent Mode) - Enhanced vector store with persistent collections per clearance level and metadata-based filtering",
+      "Multi-Format Document Ingestion - Supports PDF, DOCX, TXT, and HTML formats with structure-preserving chunking",
+      "FastAPI Backend v2 - Extended API layer with session management, audit logging, and admin knowledge-base endpoints",
+      "React + TypeScript Frontend v2 - Redesigned chat UI with citation display, confidence scores, and document source cards",
+      "Active Directory / LDAP Integration - Role and clearance level lookup per authenticated user, integrated with existing defence IAM",
+      "On-Premises GPU Server - Optimised model loading with VRAM management for multi-user concurrent inference"
+    ],
+    theoreticalBackground: [
+      "Version 2 LLM Upgrade: Moving from a base instruct model to a fine-tuned instruction-following variant improves response coherence, reduces hallucinations, and enables better structured output formatting within on-premises hardware budgets",
+      "Multi-Turn Conversation Memory: LangChain's ConversationBufferWindowMemory maintains a rolling context window of recent exchanges, enabling the model to reference prior Q&A pairs without re-sending the full history on every token",
+      "Multi-Source Retrieval with Re-Ranking: Documents from multiple knowledge bases are retrieved independently then re-ranked using a cross-encoder scoring model before being passed to the LLM — improving answer relevance across large document sets",
+      "Clearance-Level Metadata Filtering: ChromaDB's metadata filtering capability enables pre-retrieval restriction of vector search scope to document collections tagged with the user's clearance level — preventing information leakage at the vector search layer",
+      "Structured Citation Generation: The RAG prompt template is engineered to instruct the LLM to reference source document names and sections in its response, and the retrieval layer returns chunk metadata (filename, page, section) mapped to each cited passage",
+      "Quantisation Trade-offs: 4-bit GGUF quantisation reduces model VRAM footprint by ~75% with less than 5% quality degradation on instruction tasks, enabling larger models to run on available hardware compared to full-precision deployment"
+    ],
+    risks: [
+      { risk: "Increased VRAM demand from larger v2 model", mitigation: "Use 4-bit GGUF quantisation with llama.cpp backend; benchmark VRAM footprint vs. quality trade-off per available hardware" },
+      { risk: "Conversation memory growing context length beyond model limit", mitigation: "Implement sliding window memory (last N turns) and automatic context trimming with summary compression for older turns" },
+      { risk: "Cross-source retrieval returning conflicting information", mitigation: "Implement re-ranking with conflict detection; surface contradictions explicitly in response rather than silently resolving them" },
+      { risk: "Clearance-level misassignment in Active Directory", mitigation: "Add secondary validation layer in the application tier; log all access attempts and trigger alerts on anomalous query patterns" },
+      { risk: "Admin knowledge base management complexity", mitigation: "Provide a guided admin UI with dry-run ingestion, document preview, and rollback capability for knowledge base updates" },
+      { risk: "Session state loss during server restart in air-gapped environment", mitigation: "Persist session state to local database with automatic session restoration on reconnect" }
+    ],
+    limitations: [
+      "Response quality on complex multi-hop reasoning tasks is still constrained by locally deployable open-source model capabilities versus frontier cloud models",
+      "Multi-turn memory window is bounded; very long conversations may lose early context requiring users to re-state older facts",
+      "Cross-encoder re-ranking adds latency to retrieval phase — may require additional hardware to meet real-time response SLAs under concurrent load",
+      "Document ingestion pipeline currently supports PDF, DOCX, TXT, and HTML; scanned image-based PDFs require OCR pre-processing before ingestion",
+      "All model and knowledge base updates in air-gapped deployments require manual offline transfer via secured physical media",
+      "Admin portal and audit logging capabilities add operational complexity requiring designated system administrator role"
+    ],
+    conclusion: "On-Prem Chatbot Version 2 represents a substantial evolution of the secure, air-gapped AI assistant for Danish Defence. The upgrade addresses all major limitations identified in Version 1 — delivering improved response quality through a stronger LLM, richer contextual understanding via multi-turn memory, more accurate retrieval through cross-source re-ranking, and a more usable interface with structured citations. The system remains fully self-contained, maintaining the non-negotiable zero-exfiltration security posture required for classified defence environments. Version 2 is production-ready for controlled rollout and provides a solid foundation for future enhancements including domain-specific fine-tuning and voice-interface integration."
   }
 ];

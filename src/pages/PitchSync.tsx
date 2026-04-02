@@ -2,249 +2,232 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
-import { 
-  MessageSquare, 
-  ArrowLeft, 
-  Check, 
+import {
+  Zap,
+  ArrowLeft,
+  Check,
   Brain,
   Shield,
   FileText,
   Users,
   Settings,
-  Globe,
   Lock,
   Cloud,
   Layers,
   Server,
   Workflow,
-  ExternalLink,
   Rocket,
   Mail,
-  Mic,
-  Stethoscope,
   Database,
-  FileAudio,
-  ClipboardList,
-  Languages,
-  ShieldCheck,
-  Activity,
-  Cog
+  Target,
+  BarChart3,
+  Lightbulb,
+  Star,
+  ImageIcon,
+  Calculator,
+  MessageSquare,
+  TrendingUp,
+  CheckCircle2
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import jasminBanner from "@/data/images/JASMIN BANNER.png";
-import jasminCloudArch from "@/CLOUD ARCHITECTURE/jasmin.png";
+import pitchSyncCloudArch from "@/CLOUD ARCHITECTURE/PITCH SYNC.png";
+import pitchSyncUI from "@/data/images/Pitchsyn ui.png";
 import ImageLightbox from "@/components/ImageLightbox";
 
 // Core Features
 const coreFeatures = [
   {
-    icon: Mic,
-    title: "Speech-to-Text Transcription",
-    description: "Automated transcription using Azure Cognitive Services Speech-to-Text with support for medical terminology and speaker identification.",
+    icon: Workflow,
+    title: "Phase Based Workflow",
+    description: "Guides users through structured phases of pitch creation — from problem definition and market analysis to solution framing and financial projections — ensuring comprehensive coverage.",
   },
   {
-    icon: Languages,
-    title: "Multilingual Support",
-    description: "Support for multiple languages including English (en-US) and Danish (da-DK) with configurable language settings per session.",
+    icon: BarChart3,
+    title: "Real-time Scoring System",
+    description: "Dynamically scores user answers as they progress through each phase, providing immediate feedback on pitch quality and highlighting areas that need improvement.",
   },
   {
-    icon: ClipboardList,
-    title: "Customizable Journal Notes",
-    description: "Generate structured output templates (SOAP, DAP, narrative summary) with configurable sections tailored to different specialties.",
+    icon: Zap,
+    title: "Automated Pitch Generation",
+    description: "Automatically generates polished, investor-ready pitch content including structured text narratives and supporting visuals based on the user's inputs.",
+  },
+  {
+    icon: Brain,
+    title: "AI-Powered Pitch Evaluation",
+    description: "Multi-agent AI system evaluates pitch content across multiple dimensions — clarity, market fit, financial viability, and presentation quality — to deliver comprehensive assessments.",
   },
   {
     icon: Users,
-    title: "Role-Based Access Control",
-    description: "Super Admin, Admin, End User, and Internal User roles with granular permissions for secure platform management.",
+    title: "Multi-Agent Analysis",
+    description: "Orchestrates multiple specialized AI agents that independently analyse different aspects of the pitch and collaborate to provide a unified, high-confidence evaluation report.",
   },
   {
-    icon: FileText,
-    title: "AI-Powered Summarization",
-    description: "Generate structured journal notes using Azure OpenAI, enriched with contextual medical knowledge and formatted for clinical use.",
-  },
-  {
-    icon: Settings,
-    title: "Phrase List Customization",
-    description: "Client-specific phrase lists to enhance speech recognition accuracy with domain-specific medical terminology.",
+    icon: ImageIcon,
+    title: "Content & Image Generation",
+    description: "Generates the final pitch deck components including persuasive text, key visuals, and slide-ready content that users can export and present directly to investors.",
   },
 ];
 
-// Technical Capabilities
-const technicalCapabilities = [
-  {
-    icon: Brain,
-    title: "Azure OpenAI Integration",
-    description: "Leverage Azure OpenAI Service for intelligent summarization and context-aware response generation with GPT-4o model.",
-  },
-  {
-    icon: Shield,
-    title: "HIPAA-Aligned Practices",
-    description: "Implementation of secure authentication, authorization, and encryption of data in transit and at rest following healthcare compliance.",
-  },
+// Cloud Components
+const cloudComponents = [
   {
     icon: Cloud,
-    title: "Azure Cloud Architecture",
-    description: "Built on Azure with Web Apps, Blob Storage, Cosmos DB, Cognitive Services, and OpenAI for enterprise-grade reliability.",
+    title: "Frontend Application",
+    description: "Responsive web interface guiding users through structured pitch phases with real-time scoring feedback and progress tracking.",
+  },
+  {
+    icon: Server,
+    title: "FastAPI Backend",
+    description: "High-performance API layer orchestrating phase management, score calculation, agent coordination, and content delivery.",
+  },
+  {
+    icon: Brain,
+    title: "Multi-Agent Orchestrator",
+    description: "Coordinates multiple specialised AI agents for pitch evaluation, ensuring comprehensive analysis across all pitch dimensions.",
+  },
+  {
+    icon: Lightbulb,
+    title: "LLM Service",
+    description: "Large language model integration for natural language understanding, pitch content generation, and intelligent scoring of user responses.",
+  },
+  {
+    icon: ImageIcon,
+    title: "Image Generation Service",
+    description: "AI-powered image generation to produce compelling visuals for pitch decks based on pitch context and brand guidelines.",
   },
   {
     icon: Database,
-    title: "Cosmos DB Storage",
-    description: "NoSQL database for storing transcriptions, summaries, and metadata with fast querying and retrieval capabilities.",
-  },
-  {
-    icon: Lock,
-    title: "JWT Authentication",
-    description: "Secure authentication using JWT tokens with encrypted client secrets for protected API access.",
-  },
-  {
-    icon: Cog,
-    title: "Template Management",
-    description: "Flexible prompt and template management system enabling healthcare-specific documentation standards and workflows.",
+    title: "Data Store",
+    description: "Persistent storage for user sessions, phase responses, scores, generated content, and evaluation history.",
   },
 ];
 
-// External Integrations
-const integrations = [
-  {
-    name: "Azure Blob Storage",
-    description: "Secure storage for audio files with organized container structures based on user or session IDs.",
-    icon: Cloud,
-  },
-  {
-    name: "Azure Cognitive Services",
-    description: "Speech-to-Text API with medical vocabulary support and speaker diarization capabilities.",
-    icon: Mic,
-  },
-  {
-    name: "Azure OpenAI",
-    description: "GPT-4o powered summarization for generating clinical journal notes from transcriptions.",
-    icon: Brain,
-  },
-  {
-    name: "Azure Cosmos DB",
-    description: "Scalable NoSQL database for metadata, transcriptions, and structured clinical data.",
-    icon: Database,
-  },
-];
-
-// Solution Scope - Inclusions
+// Solution Scope
 const inclusions = [
-  "Audio Upload API",
-  "Speech-to-Text",
-  "AI Summarization",
-  "Journal Notes",
-  "Multi-language",
-  "Role Management",
-  "HIPAA Aligned",
-  "Data Encryption",
-  "Azure Cloud",
-  "GDPR Compliance",
+  "Phase-Based Pitch Workflow",
+  "Real-time Answer Scoring",
+  "Multi-Agent Evaluation",
+  "Automated Text Generation",
+  "AI Image Generation",
+  "Investor-Ready Output",
+  "Score Analytics Dashboard",
+  "Session Management",
+  "Export & Download",
+  "Pitch Refinement Loop",
 ];
 
-// Architecture Components
+// Architecture Layers
 const architectureComponents = [
   {
-    title: "FastAPI Backend",
-    description: "Python-based backend with FastAPI for handling HTTP requests, audio processing, and API endpoints.",
-    features: ["Audio Upload", "Transcription API", "Report Generation", "Prompt Management"],
+    title: "User Interaction Layer",
+    description: "Web UI guiding users through structured pitch phases with live scoring, progress indicators, and phase-completion feedback.",
+    features: ["Phase Navigation", "Live Scoring", "Progress Tracking", "Input Validation"],
   },
   {
-    title: "Azure Services",
-    description: "Comprehensive Azure integration with Cognitive Services, OpenAI, Blob Storage, and Cosmos DB.",
-    features: ["Speech-to-Text", "OpenAI GPT-4o", "Blob Storage", "Cosmos DB"],
+    title: "Orchestration Layer",
+    description: "FastAPI backend managing phase sequencing, coordinating multi-agent analysis, and aggregating scores into a unified evaluation.",
+    features: ["Phase Management", "Agent Coordination", "Score Aggregation", "Session Handling"],
   },
   {
-    title: "Data Management",
-    description: "Secure data handling with encryption at rest and in transit, following HIPAA and GDPR guidelines.",
-    features: ["Encryption", "Audit Logging", "Metadata Tracking", "Secure Storage"],
+    title: "AI Processing Layer",
+    description: "Specialised AI agents and LLM services evaluate pitch content, generate narratives, and create supporting images.",
+    features: ["LLM Evaluation", "Content Generation", "Image Synthesis", "Quality Scoring"],
   },
   {
-    title: "Processing Pipeline",
-    description: "Intelligent audio processing workflow from upload through transcription to summarized clinical notes.",
-    features: ["Audio Processing", "Speaker Diarization", "Medical Vocabulary", "Note Generation"],
+    title: "Storage & Output Layer",
+    description: "Persistent storage of pitch data, scores, and generated content with export-ready formatting for investor presentations.",
+    features: ["Data Persistence", "Score History", "Content Export", "Session Recovery"],
   },
 ];
 
-// User Roles
-const userRoles = [
+// Workflow Steps
+const workflowSteps = [
   {
-    title: "Super Admin",
-    description: "Full platform control with client management, system configuration, and monitoring capabilities.",
-    permissions: ["Register new clients", "Manage system settings", "Monitor usage metrics", "Configure integrations"],
+    icon: Users,
+    title: "Project Initialisation",
+    description: "User creates a new pitch project and provides initial startup context — product idea, industry, and target audience.",
   },
   {
-    title: "Admin",
-    description: "Content and template management with prompt creation, user role assignment, and analytics access.",
-    permissions: ["Create prompts", "Manage templates", "Assign user roles", "Access analytics"],
+    icon: Workflow,
+    title: "Guided Phase Input",
+    description: "System walks the user through structured phases: Problem, Solution, Market, Business Model, Team, and Financials.",
   },
   {
-    title: "End User",
-    description: "Clinical documentation with audio upload, transcription access, and report generation.",
-    permissions: ["Upload audio files", "View transcriptions", "Generate reports", "Manage phrase lists"],
+    icon: BarChart3,
+    title: "Real-time Scoring",
+    description: "Each answer is scored instantly by the AI against pitch quality criteria, giving users immediate feedback per phase.",
   },
   {
-    title: "Internal User",
-    description: "Limited access to predefined functionality for internal operations without administrative privileges.",
-    permissions: ["View-only access", "Limited operations", "Predefined templates", "No settings access"],
+    icon: Brain,
+    title: "Multi-Agent Evaluation",
+    description: "Specialised agents analyse each pitch dimension independently and collaborate to produce a comprehensive evaluation report.",
+  },
+  {
+    icon: Lightbulb,
+    title: "Pitch Refinement",
+    description: "AI recommends targeted improvements based on low-scoring areas, helping users strengthen weak points before generating the final pitch.",
+  },
+  {
+    icon: Zap,
+    title: "Final Generation",
+    description: "System generates the complete investor-ready pitch including structured narrative text and AI-created supporting visuals.",
   },
 ];
 
 // Animation variants
 const cardHoverVariants = {
   rest: { scale: 1, boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1)" },
-  hover: { 
-    scale: 1.03, 
+  hover: {
+    scale: 1.03,
     boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)",
-    transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] as const }
-  }
+    transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] as const },
+  },
 };
 
 const iconHoverVariants = {
   rest: { scale: 1, rotate: 0 },
-  hover: { 
-    scale: 1.15, 
+  hover: {
+    scale: 1.15,
     rotate: 5,
-    transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] as const }
-  }
+    transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] as const },
+  },
 };
 
 const buttonHoverVariants = {
   rest: { scale: 1 },
-  hover: { 
+  hover: {
     scale: 1.05,
-    transition: { duration: 0.2, ease: [0.4, 0, 0.2, 1] as const }
-  }
+    transition: { duration: 0.2, ease: [0.4, 0, 0.2, 1] as const },
+  },
 };
 
-const Jasmin = () => {
+const PitchSync = () => {
   const featuresRef = useRef(null);
-  const techRef = useRef(null);
+  const cloudRef = useRef(null);
   const architectureRef = useRef(null);
-  const rolesRef = useRef(null);
-  const integrationsRef = useRef(null);
+  const workflowRef = useRef(null);
   const galleryRef = useRef(null);
+  const diagramsRef = useRef(null);
+
   const isFeaturesInView = useInView(featuresRef, { once: true, margin: "-100px" });
-  const isTechInView = useInView(techRef, { once: true, margin: "-100px" });
+  const isCloudInView = useInView(cloudRef, { once: true, margin: "-100px" });
   const isArchitectureInView = useInView(architectureRef, { once: true, margin: "-100px" });
-  const isRolesInView = useInView(rolesRef, { once: true, margin: "-100px" });
-  const isIntegrationsInView = useInView(integrationsRef, { once: true, margin: "-100px" });
+  const isWorkflowInView = useInView(workflowRef, { once: true, margin: "-100px" });
   const isGalleryInView = useInView(galleryRef, { once: true, margin: "-100px" });
+  const isDiagramsInView = useInView(diagramsRef, { once: true, margin: "-100px" });
 
   return (
     <div className="min-h-screen">
       <Navbar />
-      
-      {/* Hero Section */}
+
+      {/* ── Hero ── */}
       <section className="section-primary min-h-screen relative overflow-hidden flex items-center pt-20">
-        {/* Animated background elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-20 left-10 w-72 h-72 bg-white/5 rounded-full blur-3xl animate-float" />
           <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/10 rounded-full blur-3xl animate-float" style={{ animationDelay: "-3s" }} />
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-white/5 rounded-full blur-3xl" />
-          
-          {/* Grid pattern */}
-          <div 
+          <div
             className="absolute inset-0 opacity-10"
             style={{
               backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
@@ -254,7 +237,6 @@ const Jasmin = () => {
         </div>
 
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
-          {/* Back button */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -279,8 +261,8 @@ const Jasmin = () => {
                 transition={{ duration: 0.5 }}
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/20 backdrop-blur-sm border border-accent/30 mb-6"
               >
-                <Stethoscope className="w-4 h-4 text-accent" />
-                <span className="text-primary-foreground text-sm font-medium">Speech to Medical Report Generation</span>
+                <Zap className="w-4 h-4 text-accent" />
+                <span className="text-primary-foreground text-sm font-medium">AI-Powered Pitch Platform</span>
               </motion.div>
 
               <motion.h1
@@ -289,7 +271,7 @@ const Jasmin = () => {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-primary-foreground leading-tight mb-6"
               >
-                HC-JASMIN
+                Pitch‑Sync
               </motion.h1>
 
               <motion.p
@@ -298,9 +280,10 @@ const Jasmin = () => {
                 transition={{ duration: 0.6, delay: 0.3 }}
                 className="text-lg sm:text-xl text-primary-foreground/80 mb-8 leading-relaxed"
               >
-                An AI-driven platform that transforms audio-based doctor-patient conversations into 
-                structured, meaningful journal notes. Automate clinical documentation, reduce administrative 
-                burden, and ensure accuracy with Generative AI and Azure-based services.
+                An AI-powered platform that helps users create, refine, and evaluate startup pitches
+                using automated multi-agent analysis. Pitch‑Sync guides users through structured phases,
+                scores their answers in real time, and generates investor-ready pitch content including
+                text and images.
               </motion.p>
 
               {/* Key features list */}
@@ -327,30 +310,15 @@ const Jasmin = () => {
                 transition={{ duration: 0.6, delay: 0.5 }}
                 className="flex flex-col sm:flex-row flex-wrap gap-4"
               >
-                <motion.a
-                  href="https://egonline.sharepoint.com/:b:/r/sites/EGAICOE/Shared%20Documents/AI%20COE%20Usecases%20Handover%20Documentation/Jasmin/Healthcare_InfoDoc_Jasmin_Technical%20Documentation.pdf?csf=1&web=1&e=JTZp6A"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-accent px-6 py-3 inline-flex items-center justify-center gap-2"
+                <motion.button
+                  className="btn-accent px-6 py-3 inline-flex items-center justify-center gap-2 opacity-60 cursor-not-allowed"
                   variants={buttonHoverVariants}
                   initial="rest"
-                  whileHover="hover"
+                  disabled
                 >
-                  <FileText className="w-5 h-5" />
-                  View Technical Documentation
-                </motion.a>
-                <motion.a
-                  href="https://egonline.sharepoint.com/:b:/r/sites/EGAICOE/Shared%20Documents/AI%20COE%20Usecases%20Handover%20Documentation/Jasmin/Healthcare_InfoDoc_Jasmin_Functional%20Documentation.pdf?csf=1&web=1&e=wEQlLc"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-accent px-6 py-3 inline-flex items-center justify-center gap-2"
-                  variants={buttonHoverVariants}
-                  initial="rest"
-                  whileHover="hover"
-                >
-                  <FileText className="w-5 h-5" />
-                  View Functional Documentation
-                </motion.a>
+                  <Rocket className="w-5 h-5" />
+                  Coming Soon
+                </motion.button>
               </motion.div>
             </div>
 
@@ -361,14 +329,14 @@ const Jasmin = () => {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="relative"
             >
-              <motion.div 
+              <motion.div
                 className="relative rounded-2xl overflow-hidden shadow-2xl border border-white/20"
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.3 }}
               >
                 <img
-                  src={jasminBanner}
-                  alt="HC-JASMIN Interface"
+                  src={pitchSyncUI}
+                  alt="Pitch-Sync Interface"
                   className="w-full h-auto"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent" />
@@ -378,19 +346,18 @@ const Jasmin = () => {
         </div>
       </section>
 
-      {/* Overview Section */}
+      {/* ── Overview ── */}
       <section id="overview" className="section-white py-24 lg:py-32 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-secondary to-transparent" />
-        
+
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-start">
-            {/* Use Case */}
+            {/* Problem */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="group"
             >
               <motion.div
                 variants={cardHoverVariants}
@@ -405,19 +372,19 @@ const Jasmin = () => {
                   The Challenge We Solve
                 </h2>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  In clinical settings, accurately documenting conversations between doctors and patients 
-                  is essential for maintaining comprehensive medical records, ensuring continuity of care, 
-                  and reducing administrative burden on healthcare professionals.
+                  Creating a compelling startup pitch is one of the hardest challenges founders face.
+                  Without structured guidance, pitches often lack critical elements — well-defined market
+                  sizing, clear value propositions, or credible financial projections — that investors
+                  look for.
                 </p>
                 <p className="text-muted-foreground leading-relaxed">
-                  Manual note-taking during or after consultations is time-consuming and prone to omission 
-                  or error. HC-JASMIN addresses the need for an automated, secure, and scalable solution to 
-                  transcribe doctor-patient conversations and generate structured journal notes.
+                  Manual feedback from mentors is slow and subjective, leaving founders uncertain about
+                  the quality of their pitch until it is too late to refine it before an investor meeting.
                 </p>
               </motion.div>
             </motion.div>
 
-            {/* Solution Benefits */}
+            {/* Solution */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -434,23 +401,23 @@ const Jasmin = () => {
                   Proposed Solution
                 </span>
                 <h2 className="text-2xl lg:text-3xl font-display font-bold text-foreground mb-6">
-                  Intelligent Clinical Documentation
+                  Automated Multi-Agent Pitch Platform
                 </h2>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  Leveraging Generative AI and Azure-based services, HC-JASMIN transforms audio-based 
-                  doctor-patient conversations into structured, meaningful journal notes. The platform 
-                  automates transcription and summarization while ensuring clinical relevance and scalability.
+                  Pitch‑Sync guides founders through every critical section of a startup pitch using a
+                  structured phase-based workflow. At each phase, AI agents evaluate the quality of
+                  responses in real time and provide a score.
                 </p>
                 <p className="text-muted-foreground leading-relaxed">
-                  The solution enhances productivity by reducing manual effort, improving quality of 
-                  patient records, and supporting seamless integration into existing clinical workflows 
-                  with HIPAA-aligned data handling practices.
+                  Once all phases are complete, the platform automatically generates a polished,
+                  investor-ready pitch — complete with narrative content and AI-generated supporting
+                  visuals — ready to present or export.
                 </p>
               </motion.div>
             </motion.div>
           </div>
 
-          {/* Scope Section */}
+          {/* Scope */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -467,7 +434,7 @@ const Jasmin = () => {
               </h3>
             </div>
             <div className="max-w-4xl mx-auto">
-              <ul className="space-y-3">
+              <ul className="grid sm:grid-cols-2 gap-3">
                 {inclusions.map((item, index) => (
                   <motion.li
                     key={index}
@@ -487,70 +454,13 @@ const Jasmin = () => {
         </div>
       </section>
 
-      {/* User Roles Section */}
-      <section id="roles" className="section-primary py-24 lg:py-32 relative overflow-hidden">
+      {/* ── Core Features ── */}
+      <section id="features" className="section-primary py-24 lg:py-32 relative overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute top-20 left-40 w-72 h-72 bg-white/5 rounded-full blur-3xl" />
-          <div className="absolute bottom-20 right-40 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
+          <div className="absolute top-20 right-40 w-72 h-72 bg-white/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-20 left-40 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
         </div>
-        
-        <div className="container mx-auto px-4 lg:px-8 relative z-10" ref={rolesRef}>
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isRolesInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-3xl mx-auto mb-16"
-          >
-            <span className="inline-block px-4 py-1.5 rounded-full bg-accent/20 backdrop-blur-sm text-accent text-sm font-semibold mb-6 uppercase tracking-wide">
-              User Roles
-            </span>
-            <h2 className="text-3xl lg:text-5xl font-display font-bold text-primary-foreground mb-6">
-              Role-Based Access Control
-            </h2>
-            <p className="text-primary-foreground/80 text-lg">
-              Granular permissions for different user types ensuring secure platform management
-            </p>
-          </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            {userRoles.map((role, index) => (
-              <motion.div
-                key={role.title}
-                initial={{ opacity: 0, y: 30 }}
-                animate={isRolesInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <motion.div 
-                  className="glass-card h-full p-6 lg:p-8 bg-white/95"
-                  variants={cardHoverVariants}
-                  initial="rest"
-                  whileHover="hover"
-                >
-                  <h3 className="font-display font-bold text-xl text-foreground mb-3">
-                    {role.title}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed mb-4">
-                    {role.description}
-                  </p>
-                  <div className="space-y-2">
-                    {role.permissions.map((permission, pIndex) => (
-                      <div key={pIndex} className="flex items-center gap-2">
-                        <Check className="w-4 h-4 text-accent flex-shrink-0" />
-                        <span className="text-muted-foreground text-sm">{permission}</span>
-                      </div>
-                    ))}
-                  </div>
-                </motion.div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Core Features Section */}
-      <section id="features" className="section-white py-24 lg:py-32 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-secondary to-transparent" />
-        
         <div className="container mx-auto px-4 lg:px-8 relative z-10" ref={featuresRef}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -558,14 +468,14 @@ const Jasmin = () => {
             transition={{ duration: 0.6 }}
             className="text-center max-w-3xl mx-auto mb-16"
           >
-            <span className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-semibold mb-6 uppercase tracking-wide">
-              Core Features
+            <span className="inline-block px-4 py-1.5 rounded-full bg-accent/20 backdrop-blur-sm text-accent text-sm font-semibold mb-6 uppercase tracking-wide">
+              Key Features
             </span>
-            <h2 className="text-3xl lg:text-5xl font-display font-bold text-foreground mb-6">
-              Powerful Healthcare Capabilities
+            <h2 className="text-3xl lg:text-5xl font-display font-bold text-primary-foreground mb-6">
+              Intelligent Pitch Creation
             </h2>
-            <p className="text-muted-foreground text-lg">
-              HC-JASMIN provides a comprehensive suite of AI-driven functionalities for clinical documentation
+            <p className="text-primary-foreground/80 text-lg">
+              End-to-end AI assistance from idea to investor-ready pitch
             </p>
           </motion.div>
 
@@ -577,13 +487,13 @@ const Jasmin = () => {
                 animate={isFeaturesInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <motion.div 
-                  className="glass-card h-full p-6 lg:p-8 bg-white"
+                <motion.div
+                  className="glass-card h-full p-6 lg:p-8 bg-white/95"
                   variants={cardHoverVariants}
                   initial="rest"
                   whileHover="hover"
                 >
-                  <motion.div 
+                  <motion.div
                     className="w-14 h-14 rounded-lg bg-gradient-primary flex items-center justify-center mb-6"
                     variants={iconHoverVariants}
                   >
@@ -602,56 +512,56 @@ const Jasmin = () => {
         </div>
       </section>
 
-      {/* Technical Capabilities Section */}
-      <section id="technical" className="section-primary py-24 lg:py-32 relative overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute top-20 right-40 w-72 h-72 bg-white/5 rounded-full blur-3xl" />
-          <div className="absolute bottom-20 left-40 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
-        </div>
-        
-        <div className="container mx-auto px-4 lg:px-8 relative z-10" ref={techRef}>
+      {/* ── Workflow ── */}
+      <section id="workflow" className="section-white py-24 lg:py-32 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-secondary to-transparent" />
+
+        <div className="container mx-auto px-4 lg:px-8 relative z-10" ref={workflowRef}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            animate={isTechInView ? { opacity: 1, y: 0 } : {}}
+            animate={isWorkflowInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
             className="text-center max-w-3xl mx-auto mb-16"
           >
-            <span className="inline-block px-4 py-1.5 rounded-full bg-accent/20 backdrop-blur-sm text-accent text-sm font-semibold mb-6 uppercase tracking-wide">
-              Technical Capabilities
+            <span className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-semibold mb-6 uppercase tracking-wide">
+              How It Works
             </span>
-            <h2 className="text-3xl lg:text-5xl font-display font-bold text-primary-foreground mb-6">
-              Advanced AI & Security Features
+            <h2 className="text-3xl lg:text-5xl font-display font-bold text-foreground mb-6">
+              Phase-Based Workflow
             </h2>
-            <p className="text-primary-foreground/80 text-lg">
-              Sophisticated AI processing with healthcare-grade security and compliance
+            <p className="text-muted-foreground text-lg">
+              From idea to investor-ready pitch in six structured steps
             </p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {technicalCapabilities.map((capability, index) => (
+            {workflowSteps.map((step, index) => (
               <motion.div
-                key={capability.title}
+                key={step.title}
                 initial={{ opacity: 0, y: 30 }}
-                animate={isTechInView ? { opacity: 1, y: 0 } : {}}
+                animate={isWorkflowInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <motion.div 
-                  className="glass-card h-full p-6 lg:p-8 bg-white/95"
+                <motion.div
+                  className="glass-card h-full p-6 lg:p-8 bg-white relative"
                   variants={cardHoverVariants}
                   initial="rest"
                   whileHover="hover"
                 >
-                  <motion.div 
+                  <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center">
+                    <span className="text-accent font-bold text-sm">{index + 1}</span>
+                  </div>
+                  <motion.div
                     className="w-14 h-14 rounded-lg bg-gradient-primary flex items-center justify-center mb-6"
                     variants={iconHoverVariants}
                   >
-                    <capability.icon className="w-7 h-7 text-primary-foreground" />
+                    <step.icon className="w-7 h-7 text-primary-foreground" />
                   </motion.div>
                   <h3 className="font-display font-bold text-xl text-foreground mb-3">
-                    {capability.title}
+                    {step.title}
                   </h3>
                   <p className="text-muted-foreground leading-relaxed">
-                    {capability.description}
+                    {step.description}
                   </p>
                 </motion.div>
               </motion.div>
@@ -660,10 +570,68 @@ const Jasmin = () => {
         </div>
       </section>
 
-      {/* Architecture Section */}
+      {/* ── Cloud Components ── */}
+      <section id="cloud" className="section-primary py-24 lg:py-32 relative overflow-hidden">
+        <div className="absolute inset-0">
+          <div className="absolute top-20 left-40 w-72 h-72 bg-white/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-20 right-40 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
+        </div>
+
+        <div className="container mx-auto px-4 lg:px-8 relative z-10" ref={cloudRef}>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isCloudInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+            className="text-center max-w-3xl mx-auto mb-16"
+          >
+            <span className="inline-block px-4 py-1.5 rounded-full bg-accent/20 backdrop-blur-sm text-accent text-sm font-semibold mb-6 uppercase tracking-wide">
+              Cloud Infrastructure
+            </span>
+            <h2 className="text-3xl lg:text-5xl font-display font-bold text-primary-foreground mb-6">
+              AI-Powered Architecture
+            </h2>
+            <p className="text-primary-foreground/80 text-lg">
+              Scalable, multi-agent cloud components powering every pitch
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {cloudComponents.map((component, index) => (
+              <motion.div
+                key={component.title}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isCloudInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <motion.div
+                  className="glass-card h-full p-6 lg:p-8 bg-white/95"
+                  variants={cardHoverVariants}
+                  initial="rest"
+                  whileHover="hover"
+                >
+                  <motion.div
+                    className="w-14 h-14 rounded-lg bg-gradient-primary flex items-center justify-center mb-6"
+                    variants={iconHoverVariants}
+                  >
+                    <component.icon className="w-7 h-7 text-primary-foreground" />
+                  </motion.div>
+                  <h3 className="font-display font-bold text-xl text-foreground mb-3">
+                    {component.title}
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {component.description}
+                  </p>
+                </motion.div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Architecture Layers ── */}
       <section id="architecture" className="section-white py-24 lg:py-32 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-secondary to-transparent" />
-        
+
         <div className="container mx-auto px-4 lg:px-8 relative z-10" ref={architectureRef}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -672,13 +640,13 @@ const Jasmin = () => {
             className="text-center max-w-3xl mx-auto mb-16"
           >
             <span className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-semibold mb-6 uppercase tracking-wide">
-              Technical Architecture
+              System Design
             </span>
             <h2 className="text-3xl lg:text-5xl font-display font-bold text-foreground mb-6">
-              Azure Cloud Architecture
+              Architecture Layers
             </h2>
             <p className="text-muted-foreground text-lg">
-              Built on Azure for scalability, reliability, and healthcare compliance
+              Multi-layered design for robust, scalable pitch generation
             </p>
           </motion.div>
 
@@ -690,7 +658,7 @@ const Jasmin = () => {
                 animate={isArchitectureInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <motion.div 
+                <motion.div
                   className="glass-card h-full p-6 lg:p-8 bg-white"
                   variants={cardHoverVariants}
                   initial="rest"
@@ -704,13 +672,12 @@ const Jasmin = () => {
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {component.features.map((feature) => (
-                      <motion.span
+                      <span
                         key={feature}
                         className="px-3 py-1 rounded-full bg-secondary text-primary text-xs font-medium"
-                        whileHover={{ scale: 1.1, backgroundColor: "rgba(var(--accent), 0.2)" }}
                       >
                         {feature}
-                      </motion.span>
+                      </span>
                     ))}
                   </div>
                 </motion.div>
@@ -720,100 +687,47 @@ const Jasmin = () => {
         </div>
       </section>
 
-      {/* External Integrations Section */}
-      <section id="integrations" className="section-primary py-24 lg:py-32 relative overflow-hidden">
+      {/* ── Gallery (placeholder) ── */}
+      <section id="gallery" className="section-primary py-24 lg:py-32 relative overflow-hidden" ref={galleryRef}>
         <div className="absolute inset-0">
-          <div className="absolute top-20 left-40 w-72 h-72 bg-white/5 rounded-full blur-3xl" />
-          <div className="absolute bottom-20 right-40 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
+          <div className="absolute top-20 right-40 w-72 h-72 bg-white/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-20 left-40 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
         </div>
-        
-        <div className="container mx-auto px-4 lg:px-8 relative z-10" ref={integrationsRef}>
+
+        <div className="container mx-auto px-4 lg:px-8 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            animate={isIntegrationsInView ? { opacity: 1, y: 0 } : {}}
+            animate={isGalleryInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
-            className="text-center max-w-3xl mx-auto mb-16"
+            className="text-center max-w-3xl mx-auto mb-12"
           >
             <span className="inline-block px-4 py-1.5 rounded-full bg-accent/20 backdrop-blur-sm text-accent text-sm font-semibold mb-6 uppercase tracking-wide">
-              Azure Services
+              UI Showcase
             </span>
             <h2 className="text-3xl lg:text-5xl font-display font-bold text-primary-foreground mb-6">
-              Cloud Component Integration
+              See Pitch‑Sync in Action
             </h2>
             <p className="text-primary-foreground/80 text-lg">
-              Comprehensive Azure service integration for robust healthcare documentation
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {integrations.map((integration, index) => (
-              <motion.div
-                key={integration.name}
-                initial={{ opacity: 0, y: 30 }}
-                animate={isIntegrationsInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <motion.div 
-                  className="glass-card h-full p-6 bg-white/95 text-center"
-                  variants={cardHoverVariants}
-                  initial="rest"
-                  whileHover="hover"
-                >
-                  <motion.div 
-                    className="w-14 h-14 rounded-lg bg-gradient-primary flex items-center justify-center mb-4 mx-auto"
-                    variants={iconHoverVariants}
-                  >
-                    <integration.icon className="w-7 h-7 text-primary-foreground" />
-                  </motion.div>
-                  <h3 className="font-display font-bold text-lg text-foreground mb-2">
-                    {integration.name}
-                  </h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">
-                    {integration.description}
-                  </p>
-                </motion.div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Gallery Section - See HC-JASMIN in Action */}
-      <section id="gallery" className="section-white py-24 lg:py-32 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-secondary to-transparent" />
-
-        <div className="container mx-auto px-4 lg:px-8 relative z-10" ref={galleryRef}>
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isGalleryInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-3xl mx-auto mb-16"
-          >
-            <span className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-semibold mb-6 uppercase tracking-wide">
-              User Interface
-            </span>
-            <h2 className="text-3xl lg:text-5xl font-display font-bold text-foreground mb-6">
-              See HC-JASMIN in Action
-            </h2>
-            <p className="text-muted-foreground text-lg">
-              Intuitive interface designed for healthcare professionals
+              Screenshots and demo visuals will be available here soon
             </p>
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isGalleryInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5 }}
-            className="max-w-5xl mx-auto"
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="max-w-4xl mx-auto"
           >
-            <motion.div 
-              className="relative overflow-hidden rounded-2xl shadow-2xl border border-white/20"
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isGalleryInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="rounded-2xl overflow-hidden shadow-2xl border border-white/20"
               whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.3 }}
             >
               <img
-                src={jasminBanner}
-                alt="HC-JASMIN Dashboard"
+                src={pitchSyncUI}
+                alt="Pitch-Sync UI"
                 className="w-full h-auto"
               />
             </motion.div>
@@ -821,48 +735,48 @@ const Jasmin = () => {
         </div>
       </section>
 
-      {/* Diagrams Section */}
-      <section id="diagrams" className="section-white py-24 lg:py-32 relative overflow-hidden">
+      {/* ── Cloud Architecture Diagram ── */}
+      <section id="diagrams" className="section-white py-24 lg:py-32 relative overflow-hidden" ref={diagramsRef}>
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-secondary to-transparent" />
+
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            animate={isDiagramsInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
             className="text-center max-w-3xl mx-auto mb-16"
           >
             <span className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-semibold mb-6 uppercase tracking-wide">
-              Architecture Diagrams
+              Cloud Architecture
             </span>
             <h2 className="text-3xl lg:text-5xl font-display font-bold text-foreground mb-6">
-              System Architecture
+              Cloud Architecture
             </h2>
             <p className="text-muted-foreground text-lg">
-              Visual representation of HC-JASMIN's cloud infrastructure and system architecture
+              Visual representation of Pitch‑Sync's cloud infrastructure and system architecture
             </p>
           </motion.div>
 
           <div className="max-w-4xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              animate={isDiagramsInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
               className="glass-card p-8 bg-white"
             >
               <h3 className="font-display font-bold text-xl text-foreground mb-4">
                 Cloud Architecture Diagram
               </h3>
               <ImageLightbox
-                src={jasminCloudArch}
-                alt="HC-JASMIN Cloud Architecture Diagram"
+                src={pitchSyncCloudArch}
+                alt="Pitch-Sync Cloud Architecture Diagram"
               />
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Contact Section */}
+      {/* ── Contact ── */}
       <section className="section-white py-24 lg:py-32 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-secondary to-transparent" />
 
@@ -878,14 +792,14 @@ const Jasmin = () => {
               Get Started
             </span>
             <h2 className="text-3xl lg:text-5xl font-display font-bold text-foreground mb-6">
-              Ready to Transform Clinical Documentation?
+              Ready to Perfect Your Pitch?
             </h2>
             <p className="text-muted-foreground text-lg mb-8">
-              Get in touch with our team to see how HC-JASMIN can revolutionize
-              how your organization handles medical transcription and documentation.
+              Get in touch with our team to learn how Pitch‑Sync can help your startup craft a
+              compelling, investor-ready pitch with AI-powered guidance.
             </p>
 
-            {/* Contact Information */}
+            {/* Contact card */}
             <motion.div
               className="glass-card p-8 bg-white mb-8"
               variants={cardHoverVariants}
@@ -898,8 +812,8 @@ const Jasmin = () => {
               <p className="text-muted-foreground mb-4">
                 Please reach out to the following for questions or feedback:
               </p>
-              <motion.a 
-                href="mailto:aicoe@egindia.com" 
+              <motion.a
+                href="mailto:aicoe@egindia.com"
                 className="inline-flex items-center gap-2 text-accent hover:text-accent/80 transition-colors text-lg font-medium"
                 whileHover={{ scale: 1.05 }}
               >
@@ -909,30 +823,6 @@ const Jasmin = () => {
             </motion.div>
 
             <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center">
-              <motion.a
-                href="https://egonline.sharepoint.com/:b:/r/sites/EGAICOE/Shared%20Documents/AI%20COE%20Usecases%20Handover%20Documentation/Jasmin/Healthcare_InfoDoc_Jasmin_Technical%20Documentation.pdf?csf=1&web=1&e=JTZp6A"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-accent px-8 py-4 inline-flex items-center justify-center gap-2"
-                variants={buttonHoverVariants}
-                initial="rest"
-                whileHover="hover"
-              >
-                <FileText className="w-5 h-5" />
-                View Technical Documentation
-              </motion.a>
-              <motion.a
-                href="https://egonline.sharepoint.com/:b:/r/sites/EGAICOE/Shared%20Documents/AI%20COE%20Usecases%20Handover%20Documentation/Jasmin/Healthcare_InfoDoc_Jasmin_Functional%20Documentation.pdf?csf=1&web=1&e=wEQlLc"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-8 py-4 rounded-lg bg-accent/10 text-accent font-semibold transition-all hover:bg-accent/20 inline-flex items-center justify-center gap-2"
-                variants={buttonHoverVariants}
-                initial="rest"
-                whileHover="hover"
-              >
-                <FileText className="w-5 h-5" />
-                View Functional Documentation
-              </motion.a>
               <Link
                 to="/#products"
                 className="px-8 py-4 rounded-lg border border-muted text-foreground font-semibold transition-all hover:bg-secondary inline-flex items-center justify-center gap-2"
@@ -950,4 +840,4 @@ const Jasmin = () => {
   );
 };
 
-export default Jasmin;
+export default PitchSync;

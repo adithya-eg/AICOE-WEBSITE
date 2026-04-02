@@ -9,7 +9,7 @@ const navLinks = [
   { name: "Products", href: "/#products" },
   { name: "Amplify Arena", href: "/amplify-arena" },
   { name: "Feasibilities", href: "/#feasibilities" },
-  { name: "BU <> AI COE Engagements", href: "/#aicoe-bu-interactions" },
+  { name: "BU <> AICOE Engagements", href: "/#aicoe-bu-interactions" },
   // videos removed per updated design
   { name: "Gallery", href: "/#gallery" },
   { name: "Team", href: "/#team" },

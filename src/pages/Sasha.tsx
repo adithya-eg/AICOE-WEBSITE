@@ -30,6 +30,8 @@ import Footer from "@/components/Footer";
 import sashaUI from "@/data/images/sasha ui.png";
 import sasha1 from "@/data/images/sasha 1.png";
 import sasha2 from "@/data/images/sasha 2.png";
+import sashaCloudArch from "@/CLOUD ARCHITECTURE/SASHA.png";
+import ImageLightbox from "@/components/ImageLightbox";
 
 // Carousel images array
 const carouselImages = [sashaUI, sasha2, sasha1];
@@ -197,13 +199,9 @@ const CarouselGallery = ({ isInView }: { isInView: boolean }) => {
 
   useEffect(() => {
     if (!isInView) return;
-    
     const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => 
-        prevIndex === carouselImages.length - 1 ? 0 : prevIndex + 1
-      );
-    }, 6000);
-
+      setCurrentIndex((prev) => (prev + 1) % carouselImages.length);
+    }, 5000);
     return () => clearInterval(interval);
   }, [isInView]);
 
@@ -214,40 +212,32 @@ const CarouselGallery = ({ isInView }: { isInView: boolean }) => {
       transition={{ duration: 0.5 }}
       className="max-w-5xl mx-auto"
     >
-      <motion.div 
+      <div
         className="relative overflow-hidden rounded-2xl shadow-2xl border border-white/20"
-        whileHover={{ scale: 1.02 }}
-        transition={{ duration: 0.3 }}
+        style={{ aspectRatio: "16 / 9" }}
       >
         {carouselImages.map((image, index) => (
           <motion.img
             key={index}
             src={image}
             alt={`SASHA Dashboard ${index + 1}`}
-            className="w-full h-auto"
-            initial={false}
-            animate={{ 
-              opacity: currentIndex === index ? 1 : 0,
-              display: currentIndex === index ? 'block' : 'none'
-            }}
-            transition={{ 
-              duration: 0.8,
-              ease: [0.4, 0, 0.2, 1]
-            }}
+            className="absolute inset-0 w-full h-full object-contain"
+            animate={{ opacity: currentIndex === index ? 1 : 0 }}
+            transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
           />
         ))}
-      </motion.div>
-      
+      </div>
+
       {/* Carousel Indicators */}
       <div className="flex justify-center gap-2 mt-6">
         {carouselImages.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrentIndex(index)}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
-              currentIndex === index 
-                ? 'bg-accent w-8' 
-                : 'bg-white/30 hover:bg-white/50'
+            className={`h-3 rounded-full transition-all duration-300 ${
+              currentIndex === index
+                ? "bg-accent w-8"
+                : "bg-white/30 hover:bg-white/50 w-3"
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />
@@ -817,45 +807,31 @@ const Sasha = () => {
             className="text-center max-w-3xl mx-auto mb-16"
           >
             <span className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-semibold mb-6 uppercase tracking-wide">
-              Architecture Diagrams
+              Cloud Architecture
             </span>
             <h2 className="text-3xl lg:text-5xl font-display font-bold text-foreground mb-6">
-              System Architecture
+              Cloud Architecture
             </h2>
             <p className="text-muted-foreground text-lg">
-              Visual representations of SASHA's cloud architecture and functional flow
+              Visual representation of SASHA's cloud infrastructure and system architecture
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="max-w-4xl mx-auto">
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
               className="glass-card p-8 bg-white"
             >
               <h3 className="font-display font-bold text-xl text-foreground mb-4">
-                Cloud Diagram
+                Cloud Architecture Diagram
               </h3>
-              <div className="aspect-video bg-gray-100 rounded-lg flex items-center justify-center">
-                <span className="text-gray-500">Cloud Diagram - Link to be updated</span>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="glass-card p-8 bg-white"
-            >
-              <h3 className="font-display font-bold text-xl text-foreground mb-4">
-                Functional Diagram
-              </h3>
-              <div className="aspect-video bg-gray-100 rounded-lg flex items-center justify-center">
-                <span className="text-gray-500">Functional Diagram - Link to be updated</span>
-              </div>
+              <ImageLightbox
+                src={sashaCloudArch}
+                alt="SASHA Cloud Architecture Diagram"
+              />
             </motion.div>
           </div>
         </div>

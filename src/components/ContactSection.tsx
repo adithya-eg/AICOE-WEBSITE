@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { Mail, Phone, MapPin, Send, CheckCircle } from "lucide-react";
+import { Mail, MapPin, Send, CheckCircle } from "lucide-react";
 
 const ContactSection = () => {
   const ref = useRef(null);
@@ -27,12 +27,6 @@ const ContactSection = () => {
       label: "Email",
       value: "aicoe@egindia.com",
       href: "mailto:aicoe@egindia.com",
-    },
-    {
-      icon: Phone,
-      label: "Phone",
-      value: "+91 80 1234 5678",
-      href: "tel:+918012345678",
     },
     {
       icon: MapPin,

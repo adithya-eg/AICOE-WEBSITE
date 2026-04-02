@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Bot, Brain } from "lucide-react";
+import { Bot, Cpu } from "lucide-react";
 
 const HeroSection = () => {
   return (
@@ -39,7 +39,7 @@ const HeroSection = () => {
         className="absolute bottom-40 left-20 hidden lg:block"
       >
         <div className="glass-card p-4 animate-float bg-white/10" style={{ animationDelay: "-2s" }}>
-          <Brain className="w-8 h-8 text-accent" />
+          <Cpu className="w-8 h-8 text-accent" />
         </div>
       </motion.div>
 
@@ -100,7 +100,7 @@ const HeroSection = () => {
           >
             {[
               { value: "6+", label: "AI Products" },
-              { value: "15+", label: "Team Members" },
+              { value: "10+", label: "Team Members" },
               { value: "20+", label: "Feasibility Reports" },
             ].map((stat, index) => (
               <div key={index} className="text-center">

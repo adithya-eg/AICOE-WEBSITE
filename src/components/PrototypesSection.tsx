@@ -63,15 +63,21 @@ const PrototypesSection = () => {
                   {prototype.description}
                 </p>
 
-                {/* CTA for Text to SQL and Invoice Assistant */}
-                {(prototype.id === "text-to-sql-aicoe" || prototype.id === "invoice-assistant") && (
-                  <Link
-                    to={prototype.id === "text-to-sql-aicoe" ? "/text-to-sql" : "/invoice-assistant"}
-                    className="inline-flex items-center gap-2 text-accent font-semibold text-sm group-hover:gap-3 transition-all mt-auto"
-                  >
-                    View More Details <ArrowRight className="w-4 h-4" />
-                  </Link>
-                )}
+                {/* CTA — all prototypes */}
+                <Link
+                  to={
+                    prototype.id === "text-to-sql-aicoe"
+                      ? "/text-to-sql"
+                      : prototype.id === "invoice-assistant"
+                      ? "/invoice-assistant"
+                      : prototype.id === "on-prem-chatbot-danish-defense"
+                      ? "/feasibility/on-prem-chatbot-v1"
+                      : `/prototype/${prototype.id}`
+                  }
+                  className="inline-flex items-center gap-2 text-accent font-semibold text-sm group-hover:gap-3 transition-all mt-auto"
+                >
+                  View More Details <ArrowRight className="w-4 h-4" />
+                </Link>
               </div>
             </motion.div>
           ))}

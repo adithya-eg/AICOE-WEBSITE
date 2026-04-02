@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { useParams, Link, Navigate } from "react-router-dom";
 import {
   ArrowLeft,
@@ -27,7 +27,6 @@ const cardHoverVariants = {
 const BUInteractionDetail = () => {
   const { id } = useParams<{ id: string }>();
   const normalizedId = decodeURIComponent(id ?? "").trim().toLowerCase();
-  const [showPdfViewer, setShowPdfViewer] = useState(false);
 
   const summaryRef = useRef(null);
   const objectivesRef = useRef(null);
@@ -45,10 +44,7 @@ const BUInteractionDetail = () => {
 
   const interaction = aicoeBuInteractions.find((r) => {
     const interactionId = r.id.trim().toLowerCase();
-    if (interactionId === normalizedId) {
-      return true;
-    }
-
+    if (interactionId === normalizedId) return true;
     const compactInteractionId = interactionId.replace(/[-_\s]+/g, "");
     const compactIncomingId = normalizedId.replace(/[-_\s]+/g, "");
     return compactInteractionId === compactIncomingId;
@@ -58,234 +54,456 @@ const BUInteractionDetail = () => {
     return <Navigate to="/404" replace />;
   }
 
+  const InteractionIcon = interaction.icon;
+
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
       <Navbar />
 
-      {/* Hero Section */}
-      <section className="pt-32 pb-16 lg:pt-40 lg:pb-20 bg-gradient-to-br from-primary/5 via-accent/5 to-secondary/5">
-        <div className="container mx-auto px-4 lg:px-8">
+      {/* ── Hero ── */}
+      <section className="section-primary min-h-[70vh] relative overflow-hidden flex items-center pt-20">
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-white/5 rounded-full blur-3xl animate-float" />
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/10 rounded-full blur-3xl animate-float" style={{ animationDelay: "-3s" }} />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-white/5 rounded-full blur-3xl" />
+          <div
+            className="absolute inset-0 opacity-10"
+            style={{
+              backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+              backgroundSize: "60px 60px",
+            }}
+          />
+        </div>
+
+        <div className="container mx-auto px-4 lg:px-8 relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="max-w-4xl mx-auto text-center"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className="mb-8"
           >
             <Link
               to="/#aicoe-bu-interactions"
-              className="inline-flex items-center gap-2 text-accent hover:text-accent/80 transition-colors mb-6"
+              className="inline-flex items-center gap-2 text-primary-foreground/70 hover:text-primary-foreground transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
-              Back to BU Interactions
+              <span>Back to BU Interactions</span>
             </Link>
+          </motion.div>
 
-            <div className="w-20 h-20 rounded-2xl bg-gradient-primary flex items-center justify-center mx-auto mb-6">
-              <interaction.icon className="w-10 h-10 text-primary-foreground" />
-            </div>
+          <div className="max-w-4xl">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/20 backdrop-blur-sm border border-accent/30 mb-6"
+            >
+              <InteractionIcon className="w-4 h-4 text-accent" />
+              <span className="text-primary-foreground text-sm font-medium">{interaction.businessUnit}</span>
+            </motion.div>
 
-            <span className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-semibold mb-4 uppercase tracking-wide">
-              {interaction.businessUnit}
-            </span>
-
-            <h1 className="text-4xl lg:text-6xl font-display font-bold text-foreground mb-4">
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-primary-foreground leading-tight mb-6"
+            >
               {interaction.title}
-            </h1>
+            </motion.h1>
 
-            <p className="text-muted-foreground text-xl mb-8">
-              {interaction.tagline}
-            </p>
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="text-lg sm:text-xl text-primary-foreground/80 mb-6 leading-relaxed"
+            >
+              {interaction.description}
+            </motion.p>
 
-            <div className="flex flex-wrap justify-center gap-4">
-              <span className="px-4 py-2 rounded-lg bg-primary/10 text-primary font-semibold">
-                {interaction.category}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="flex flex-wrap gap-4 mb-8"
+            >
+              <span className="px-3 py-1 rounded-full bg-white/10 text-primary-foreground/80 text-sm">
+                Category: {interaction.category}
               </span>
-              <span className="px-4 py-2 rounded-lg bg-secondary/10 text-secondary font-semibold">
-                Version {interaction.version}
-              </span>
-              {interaction.pdfPath && (
-                <button
-                  onClick={() => setShowPdfViewer(!showPdfViewer)}
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-accent/10 text-accent font-semibold hover:bg-accent/20 transition-colors"
-                >
-                  <Eye className="w-4 h-4" />
-                  {showPdfViewer ? 'Hide PDF' : 'View PDF'}
-                </button>
+              {interaction.version && (
+                <span className="px-3 py-1 rounded-full bg-white/10 text-primary-foreground/80 text-sm">
+                  Version: {interaction.version}
+                </span>
               )}
+              {interaction.preparedBy && (
+                <span className="px-3 py-1 rounded-full bg-white/10 text-primary-foreground/80 text-sm">
+                  Prepared by: {interaction.preparedBy}
+                </span>
+              )}
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="flex justify-start"
+            >
+              {interaction.pdfPath ? (
+                <a
+                  href={interaction.pdfPath}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-accent px-6 py-3 inline-flex items-center gap-2"
+                >
+                  <Eye className="w-5 h-5" />
+                  View PDF Document
+                </a>
+              ) : (
+                <span className="text-primary-foreground/50 text-sm">PDF not available</span>
+              )}
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Executive Summary ── */}
+      <section className="section-white py-24 lg:py-32 relative overflow-hidden" ref={summaryRef}>
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-secondary to-transparent" />
+
+        <div className="container mx-auto px-4 lg:px-8 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isSummaryInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+          >
+            <motion.div
+              variants={cardHoverVariants}
+              initial="rest"
+              whileHover="hover"
+              className="glass-card p-8 bg-white max-w-4xl mx-auto"
+            >
+              <span className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-semibold mb-6 uppercase tracking-wide">
+                Executive Summary
+              </span>
+              <h2 className="text-2xl lg:text-3xl font-display font-bold text-foreground mb-6">
+                Overview
+              </h2>
+              <p className="text-muted-foreground leading-relaxed text-lg">
+                {interaction.executiveSummary}
+              </p>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ── Objectives ── */}
+      <section className="section-primary py-24 lg:py-32 relative overflow-hidden" ref={objectivesRef}>
+        <div className="absolute inset-0">
+          <div className="absolute top-20 left-40 w-72 h-72 bg-white/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-20 right-40 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
+        </div>
+
+        <div className="container mx-auto px-4 lg:px-8 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isObjectivesInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+            className="max-w-4xl mx-auto"
+          >
+            <span className="inline-block px-4 py-1.5 rounded-full bg-accent/20 backdrop-blur-sm text-accent text-sm font-semibold mb-6 uppercase tracking-wide">
+              Objectives
+            </span>
+            <h2 className="text-3xl lg:text-4xl font-display font-bold text-primary-foreground mb-8">
+              Project Goals
+            </h2>
+
+            <div className="glass-card p-8 bg-white/95">
+              <ul className="space-y-4">
+                {interaction.objectives.map((objective, index) => (
+                  <motion.li
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={isObjectivesInView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ duration: 0.4, delay: index * 0.1 }}
+                    className="flex items-start gap-3"
+                  >
+                    <div className="w-2 h-2 rounded-full bg-accent flex-shrink-0 mt-2" />
+                    <p className="text-muted-foreground leading-relaxed">{objective}</p>
+                  </motion.li>
+                ))}
+              </ul>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* PDF Viewer */}
-      {showPdfViewer && interaction.pdfPath && (
-        <section className="py-8 bg-white">
-          <div className="container mx-auto px-4 lg:px-8">
-            <div className="max-w-6xl mx-auto">
-              <iframe
-                src={interaction.pdfPath}
-                className="w-full h-[600px] border rounded-lg"
-                title={`${interaction.title} PDF`}
-              />
-            </div>
-          </div>
-        </section>
-      )}
+      {/* ── Key Technologies ── */}
+      <section className="section-white py-24 lg:py-32 relative overflow-hidden" ref={techRef}>
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-secondary to-transparent" />
 
-      {/* Content Sections */}
-      <section className="py-16 lg:py-24">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="max-w-4xl mx-auto space-y-16">
+        <div className="container mx-auto px-4 lg:px-8 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isTechInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+            className="max-w-4xl mx-auto"
+          >
+            <span className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-semibold mb-6 uppercase tracking-wide">
+              Technology Stack
+            </span>
+            <h2 className="text-3xl lg:text-4xl font-display font-bold text-foreground mb-8">
+              Key Technologies
+            </h2>
 
-            {/* Executive Summary */}
-            <motion.div
-              ref={summaryRef}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isSummaryInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6 }}
-              className="glass-card p-8 lg:p-10"
-            >
-              <h2 className="text-2xl lg:text-3xl font-display font-bold text-foreground mb-6">
-                Executive Summary
-              </h2>
-              <p className="text-muted-foreground text-lg leading-relaxed">
-                {interaction.executiveSummary}
-              </p>
-            </motion.div>
-
-            {/* Objectives */}
-            <motion.div
-              ref={objectivesRef}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isObjectivesInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="glass-card p-8 lg:p-10"
-            >
-              <h2 className="text-2xl lg:text-3xl font-display font-bold text-foreground mb-6">
-                Objectives
-              </h2>
-              <ul className="space-y-3">
-                {interaction.objectives.map((objective, index) => (
-                  <li key={index} className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
-                    <span className="text-muted-foreground text-lg">{objective}</span>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-
-            {/* Key Technologies */}
-            <motion.div
-              ref={techRef}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isTechInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="glass-card p-8 lg:p-10"
-            >
-              <h2 className="text-2xl lg:text-3xl font-display font-bold text-foreground mb-6">
-                Key Technologies
-              </h2>
-              <div className="grid md:grid-cols-2 gap-4">
+            <div className="glass-card p-8 bg-white">
+              <div className="grid md:grid-cols-2 gap-3">
                 {interaction.keyTechnologies.map((tech, index) => (
-                  <div key={index} className="flex items-center gap-3 p-4 rounded-lg bg-primary/5">
-                    <Shield className="w-5 h-5 text-primary" />
-                    <span className="text-foreground font-medium">{tech}</span>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Theoretical Background */}
-            <motion.div
-              ref={theoryRef}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isTheoryInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="glass-card p-8 lg:p-10"
-            >
-              <h2 className="text-2xl lg:text-3xl font-display font-bold text-foreground mb-6">
-                Theoretical Background
-              </h2>
-              <ul className="space-y-3">
-                {interaction.theoreticalBackground.map((theory, index) => (
-                  <li key={index} className="flex items-start gap-3">
-                    <div className="w-2 h-2 rounded-full bg-accent mt-2 flex-shrink-0" />
-                    <span className="text-muted-foreground text-lg">{theory}</span>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-
-            {/* Risks & Mitigations */}
-            <motion.div
-              ref={risksRef}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isRisksInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="glass-card p-8 lg:p-10"
-            >
-              <h2 className="text-2xl lg:text-3xl font-display font-bold text-foreground mb-6">
-                Risks & Mitigations
-              </h2>
-              <div className="space-y-4">
-                {interaction.risks.map((risk, index) => (
                   <motion.div
                     key={index}
-                    variants={cardHoverVariants}
-                    initial="rest"
-                    whileHover="hover"
-                    className="p-6 rounded-lg bg-red-50 border border-red-200"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={isTechInView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ duration: 0.4, delay: index * 0.05 }}
+                    className="flex items-start gap-3 p-3 rounded-lg bg-secondary/30"
                   >
-                    <div className="flex items-start gap-3">
-                      <AlertTriangle className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" />
-                      <div className="flex-1">
-                        <h3 className="font-semibold text-red-800 mb-2">{risk.risk}</h3>
-                        <p className="text-red-700">
-                          <strong>Mitigation:</strong> {risk.mitigation}
-                        </p>
-                      </div>
+                    <div className="w-2 h-2 rounded-full bg-accent flex-shrink-0 mt-2" />
+                    <span className="text-muted-foreground leading-relaxed text-sm">{tech}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ── Theoretical Background ── */}
+      <section className="section-primary py-24 lg:py-32 relative overflow-hidden" ref={theoryRef}>
+        <div className="absolute inset-0">
+          <div className="absolute top-20 right-40 w-72 h-72 bg-white/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-20 left-40 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
+        </div>
+
+        <div className="container mx-auto px-4 lg:px-8 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isTheoryInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+            className="max-w-4xl mx-auto"
+          >
+            <span className="inline-block px-4 py-1.5 rounded-full bg-accent/20 backdrop-blur-sm text-accent text-sm font-semibold mb-6 uppercase tracking-wide">
+              Theoretical Background
+            </span>
+            <h2 className="text-3xl lg:text-4xl font-display font-bold text-primary-foreground mb-8">
+              Deep Technical Foundation
+            </h2>
+
+            <div className="glass-card p-8 bg-white/95">
+              <ul className="space-y-4">
+                {interaction.theoreticalBackground.map((item, index) => (
+                  <motion.li
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={isTheoryInView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ duration: 0.4, delay: index * 0.1 }}
+                    className="flex items-start gap-3"
+                  >
+                    <div className="w-2 h-2 rounded-full bg-accent flex-shrink-0 mt-2" />
+                    <p className="text-muted-foreground leading-relaxed">{item}</p>
+                  </motion.li>
+                ))}
+              </ul>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ── Risks & Mitigation ── */}
+      <section className="section-primary py-24 lg:py-32 relative overflow-hidden" ref={risksRef}>
+        <div className="absolute inset-0">
+          <div className="absolute top-20 left-40 w-72 h-72 bg-white/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-20 right-40 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
+        </div>
+
+        <div className="container mx-auto px-4 lg:px-8 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isRisksInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+            className="text-center max-w-3xl mx-auto mb-16"
+          >
+            <span className="inline-block px-4 py-1.5 rounded-full bg-accent/20 backdrop-blur-sm text-accent text-sm font-semibold mb-6 uppercase tracking-wide">
+              Risk Assessment
+            </span>
+            <h2 className="text-3xl lg:text-4xl font-display font-bold text-primary-foreground mb-6">
+              Risks & Mitigation
+            </h2>
+          </motion.div>
+
+          <div className="max-w-4xl mx-auto">
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b border-white/20">
+                    <th className="text-left py-4 px-4 text-primary-foreground font-semibold">Risk</th>
+                    <th className="text-left py-4 px-4 text-primary-foreground font-semibold">Mitigation</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {interaction.risks.map((item, index) => (
+                    <motion.tr
+                      key={index}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={isRisksInView ? { opacity: 1, x: 0 } : {}}
+                      transition={{ duration: 0.4, delay: index * 0.1 }}
+                      className="border-b border-white/10"
+                    >
+                      <td className="py-4 px-4">
+                        <div className="flex items-center gap-3">
+                          <AlertTriangle className="w-5 h-5 text-orange-400 flex-shrink-0" />
+                          <span className="text-primary-foreground/90">{item.risk}</span>
+                        </div>
+                      </td>
+                      <td className="py-4 px-4">
+                        <div className="flex items-center gap-3">
+                          <Shield className="w-5 h-5 text-green-400 flex-shrink-0" />
+                          <span className="text-primary-foreground/80">{item.mitigation}</span>
+                        </div>
+                      </td>
+                    </motion.tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Limitations ── */}
+      <section className="section-white py-24 lg:py-32 relative overflow-hidden" ref={limitationsRef}>
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-secondary to-transparent" />
+
+        <div className="container mx-auto px-4 lg:px-8 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isLimitationsInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+            className="text-center max-w-3xl mx-auto mb-16"
+          >
+            <span className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-semibold mb-6 uppercase tracking-wide">
+              Limitations
+            </span>
+            <h2 className="text-3xl lg:text-4xl font-display font-bold text-foreground mb-6">
+              Known Limitations
+            </h2>
+          </motion.div>
+
+          <div className="max-w-4xl mx-auto">
+            <motion.div
+              className="glass-card p-8 bg-white"
+              variants={cardHoverVariants}
+              initial="rest"
+              whileHover="hover"
+            >
+              <div className="space-y-4">
+                {interaction.limitations.map((limitation, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={isLimitationsInView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ duration: 0.4, delay: index * 0.1 }}
+                    className="flex items-start gap-4"
+                  >
+                    <div className="w-6 h-6 rounded-full bg-orange-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <XCircle className="w-3.5 h-3.5 text-orange-600" />
                     </div>
+                    <p className="text-muted-foreground leading-relaxed">{limitation}</p>
                   </motion.div>
                 ))}
               </div>
             </motion.div>
-
-            {/* Limitations */}
-            <motion.div
-              ref={limitationsRef}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isLimitationsInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              className="glass-card p-8 lg:p-10"
-            >
-              <h2 className="text-2xl lg:text-3xl font-display font-bold text-foreground mb-6">
-                Limitations
-              </h2>
-              <ul className="space-y-3">
-                {interaction.limitations.map((limitation, index) => (
-                  <li key={index} className="flex items-start gap-3">
-                    <XCircle className="w-5 h-5 text-orange-500 mt-0.5 flex-shrink-0" />
-                    <span className="text-muted-foreground text-lg">{limitation}</span>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-
-            {/* Conclusion */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.7 }}
-              className="glass-card p-8 lg:p-10"
-            >
-              <h2 className="text-2xl lg:text-3xl font-display font-bold text-foreground mb-6">
-                Conclusion
-              </h2>
-              <p className="text-muted-foreground text-lg leading-relaxed">
-                {interaction.conclusion}
-              </p>
-            </motion.div>
-
           </div>
+        </div>
+      </section>
+
+      {/* ── Conclusion ── */}
+      <section className="section-primary py-24 lg:py-32 relative overflow-hidden">
+        <div className="absolute inset-0">
+          <div className="absolute top-20 right-40 w-72 h-72 bg-white/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-20 left-40 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
+        </div>
+
+        <div className="container mx-auto px-4 lg:px-8 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="max-w-3xl mx-auto text-center"
+          >
+            <span className="inline-block px-4 py-1.5 rounded-full bg-accent/20 backdrop-blur-sm text-accent text-sm font-semibold mb-6 uppercase tracking-wide">
+              Conclusion
+            </span>
+            <h2 className="text-3xl lg:text-4xl font-display font-bold text-primary-foreground mb-6">
+              Final Summary
+            </h2>
+
+            <motion.div
+              className="glass-card p-8 bg-white/95 mb-8 text-left"
+              variants={cardHoverVariants}
+              initial="rest"
+              whileHover="hover"
+            >
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
+                  <CheckCircle className="w-5 h-5 text-green-600" />
+                </div>
+                <p className="text-muted-foreground text-lg leading-relaxed">
+                  {interaction.conclusion}
+                </p>
+              </div>
+            </motion.div>
+
+            <motion.div
+              className="glass-card p-8 bg-white/95 mb-8"
+              variants={cardHoverVariants}
+              initial="rest"
+              whileHover="hover"
+            >
+              <h3 className="font-display font-bold text-xl text-foreground mb-6">
+                Contact Information
+              </h3>
+              <p className="text-muted-foreground mb-4">
+                Please reach out for questions or feedback:
+              </p>
+              <motion.a
+                href="mailto:aicoe@egindia.com"
+                className="inline-flex items-center gap-2 text-accent hover:text-accent/80 transition-colors text-lg font-medium"
+                whileHover={{ scale: 1.05 }}
+              >
+                <Mail className="w-5 h-5" />
+                aicoe@egindia.com
+              </motion.a>
+            </motion.div>
+
+            <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center">
+              {interaction.pdfPath ? (
+                <a
+                  href={interaction.pdfPath}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-accent px-8 py-4 inline-flex items-center justify-center gap-2"
+                >
+                  <Eye className="w-5 h-5" />
+                  View PDF Document
+                </a>
+              ) : null}
+              <Link
+                to="/#aicoe-bu-interactions"
+                className="px-8 py-4 rounded-lg bg-white/10 backdrop-blur-sm border border-white/30 text-primary-foreground font-semibold transition-all hover:bg-white/20 inline-flex items-center justify-center gap-2"
+              >
+                <ArrowLeft className="w-5 h-5" />
+                Back to BU Interactions
+              </Link>
+            </div>
+          </motion.div>
         </div>
       </section>
 

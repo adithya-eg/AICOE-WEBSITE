@@ -34,6 +34,8 @@ import Footer from "@/components/Footer";
 import aiAssistantUI from "@/data/images/AI-ASSISTANT 1.png";
 import ai1 from "@/data/images/AI-1.png";
 import ai2 from "@/data/images/AI-2.png";
+import aiAssistantCloudArch from "@/CLOUD ARCHITECTURE/AI ASSISTANT.png";
+import ImageLightbox from "@/components/ImageLightbox";
 
 // Carousel images array
 const carouselImages = [aiAssistantUI, ai1, ai2];
@@ -224,14 +226,10 @@ const CarouselGallery = ({ isInView }: { isInView: boolean }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    if (!isInView || carouselImages.length <= 1) return;
-    
+    if (!isInView) return;
     const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => 
-        prevIndex === carouselImages.length - 1 ? 0 : prevIndex + 1
-      );
-    }, 6000);
-
+      setCurrentIndex((prev) => (prev + 1) % carouselImages.length);
+    }, 5000);
     return () => clearInterval(interval);
   }, [isInView]);
 
@@ -242,47 +240,37 @@ const CarouselGallery = ({ isInView }: { isInView: boolean }) => {
       transition={{ duration: 0.5 }}
       className="max-w-5xl mx-auto"
     >
-      <motion.div 
+      <div
         className="relative overflow-hidden rounded-2xl shadow-2xl border border-white/20"
-        whileHover={{ scale: 1.02 }}
-        transition={{ duration: 0.3 }}
+        style={{ aspectRatio: "16 / 9" }}
       >
         {carouselImages.map((image, index) => (
           <motion.img
             key={index}
             src={image}
             alt={`AI Assistant Dashboard ${index + 1}`}
-            className="w-full h-auto"
-            initial={false}
-            animate={{ 
-              opacity: currentIndex === index ? 1 : 0,
-              display: currentIndex === index ? 'block' : 'none'
-            }}
-            transition={{ 
-              duration: 0.8,
-              ease: [0.4, 0, 0.2, 1]
-            }}
+            className="absolute inset-0 w-full h-full object-contain"
+            animate={{ opacity: currentIndex === index ? 1 : 0 }}
+            transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
           />
         ))}
-      </motion.div>
-      
+      </div>
+
       {/* Carousel Indicators */}
-      {carouselImages.length > 1 && (
-        <div className="flex justify-center gap-2 mt-6">
-          {carouselImages.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentIndex(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                currentIndex === index 
-                  ? 'bg-accent w-8' 
-                  : 'bg-white/30 hover:bg-white/50'
-              }`}
-              aria-label={`Go to slide ${index + 1}`}
-            />
-          ))}
-        </div>
-      )}
+      <div className="flex justify-center gap-2 mt-6">
+        {carouselImages.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentIndex(index)}
+            className={`h-3 rounded-full transition-all duration-300 ${
+              currentIndex === index
+                ? "bg-accent w-8"
+                : "bg-white/30 hover:bg-white/50 w-3"
+            }`}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
+      </div>
     </motion.div>
   );
 };
@@ -905,56 +893,39 @@ const AIAssistant = () => {
             className="text-center max-w-3xl mx-auto mb-16"
           >
             <span className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-semibold mb-6 uppercase tracking-wide">
-              Architecture Diagrams
+              Cloud Architecture
             </span>
             <h2 className="text-3xl lg:text-5xl font-display font-bold text-foreground mb-6">
-              System Architecture
+              Cloud Architecture
             </h2>
             <p className="text-muted-foreground text-lg">
-              Visual representations of AI Assistant's cloud architecture and functional flow
+              Visual representation of AI Assistant's cloud infrastructure and system architecture
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="max-w-4xl mx-auto">
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
               className="glass-card p-8 bg-white"
             >
               <h3 className="font-display font-bold text-xl text-foreground mb-4">
-                Cloud Diagram
+                Cloud Architecture Diagram
               </h3>
-              <div className="aspect-video bg-gray-100 rounded-lg flex items-center justify-center">
-                <span className="text-gray-500">Cloud Diagram - Link to be updated</span>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="glass-card p-8 bg-white"
-            >
-              <h3 className="font-display font-bold text-xl text-foreground mb-4">
-                Functional Diagram
-              </h3>
-              <div className="aspect-video bg-gray-100 rounded-lg flex items-center justify-center">
-                <span className="text-gray-500">Functional Diagram - Link to be updated</span>
-              </div>
+              <ImageLightbox
+                src={aiAssistantCloudArch}
+                alt="AI Assistant Cloud Architecture Diagram"
+              />
             </motion.div>
           </div>
         </div>
       </section>
 
       {/* Contact Section */}
-      <section className="section-primary py-24 lg:py-32 relative overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute top-20 right-40 w-72 h-72 bg-white/5 rounded-full blur-3xl" />
-          <div className="absolute bottom-20 left-40 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
-        </div>
+      <section className="section-white py-24 lg:py-32 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-secondary to-transparent" />
 
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
           <motion.div
@@ -964,20 +935,20 @@ const AIAssistant = () => {
             viewport={{ once: true }}
             className="max-w-3xl mx-auto text-center"
           >
-            <span className="inline-block px-4 py-1.5 rounded-full bg-accent/20 backdrop-blur-sm text-accent text-sm font-semibold mb-6 uppercase tracking-wide">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-semibold mb-6 uppercase tracking-wide">
               Get Started
             </span>
-            <h2 className="text-3xl lg:text-5xl font-display font-bold text-primary-foreground mb-6">
+            <h2 className="text-3xl lg:text-5xl font-display font-bold text-foreground mb-6">
               Ready to Transform Your User Support?
             </h2>
-            <p className="text-primary-foreground/80 text-lg mb-8">
-              Get in touch with our team to see how AI Assistant can revolutionize 
+            <p className="text-muted-foreground text-lg mb-8">
+              Get in touch with our team to see how AI Assistant can revolutionize
               how your organization provides 24/7 intelligent support.
             </p>
 
             {/* Contact Information */}
-            <motion.div 
-              className="glass-card p-8 bg-white/95 mb-8"
+            <motion.div
+              className="glass-card p-8 bg-white mb-8"
               variants={cardHoverVariants}
               initial="rest"
               whileHover="hover"
@@ -1015,7 +986,7 @@ const AIAssistant = () => {
                 href="https://egonline.sharepoint.com/:b:/r/sites/EGAICOE/Shared%20Documents/AI%20COE%20Usecases%20Handover%20Documentation/AI%20Assistant/Ai%20Assistant%20techincal%20documentation%20-%20v1.pdf?csf=1&web=1&e=77jLrv"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-8 py-4 rounded-lg bg-white/10 backdrop-blur-sm border border-white/30 text-primary-foreground font-semibold transition-all hover:bg-white/20 inline-flex items-center justify-center gap-2"
+                className="px-8 py-4 rounded-lg bg-accent/10 text-accent font-semibold transition-all hover:bg-accent/20 inline-flex items-center justify-center gap-2"
                 variants={buttonHoverVariants}
                 initial="rest"
                 whileHover="hover"
@@ -1027,7 +998,7 @@ const AIAssistant = () => {
                 href="https://egonline.sharepoint.com/:x:/r/sites/EGAICOE/Shared%20Documents/AI%20COE%20Usecases%20Handover%20Documentation/AI%20Assistant/AI%20Assistant%20-%20Cost%20Calculator.xlsx?d=we919c952b4a24381a9e2de318190a726&csf=1&web=1&e=VPfKgN"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-8 py-4 rounded-lg bg-white/10 backdrop-blur-sm border border-white/30 text-primary-foreground font-semibold transition-all hover:bg-white/20 inline-flex items-center justify-center gap-2"
+                className="px-8 py-4 rounded-lg bg-accent/10 text-accent font-semibold transition-all hover:bg-accent/20 inline-flex items-center justify-center gap-2"
                 variants={buttonHoverVariants}
                 initial="rest"
                 whileHover="hover"
@@ -1037,7 +1008,7 @@ const AIAssistant = () => {
               </motion.a>
               <Link
                 to="/#products"
-                className="px-8 py-4 rounded-lg bg-white/10 backdrop-blur-sm border border-white/30 text-primary-foreground font-semibold transition-all hover:bg-white/20 inline-flex items-center justify-center gap-2"
+                className="px-8 py-4 rounded-lg border border-muted text-foreground font-semibold transition-all hover:bg-secondary inline-flex items-center justify-center gap-2"
               >
                 <ArrowLeft className="w-5 h-5" />
                 Back to Products

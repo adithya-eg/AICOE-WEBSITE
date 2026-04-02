@@ -13,6 +13,7 @@ import TextToSQL from "./pages/TextToSQL";
 import AmplifyArena from "./pages/AmplifyArena";
 import DocTrans from "./pages/DocTrans";
 import InvoiceAssistant from "./pages/InvoiceAssistant";
+import PitchSync from "./pages/PitchSync";
 import FeasibilityReportDetail from "./pages/FeasibilityReportDetail";
 import BUInteractionDetail from "./pages/BUInteractionDetail";
 import ScrollToTop from "./components/ScrollToTop";
@@ -36,6 +37,7 @@ const App = () => (
           <Route path="/amplify-arena" element={<AmplifyArena />} />
           <Route path="/doc-trans" element={<DocTrans />} />
           <Route path="/invoice-assistant" element={<InvoiceAssistant />} />
+          <Route path="/pitch-sync" element={<PitchSync />} />
           <Route path="/feasibility/:id" element={<FeasibilityReportDetail />} />
           <Route path="/feasibilities/:id" element={<FeasibilityReportDetail />} />
           <Route path="/feasibility-report/:id" element={<FeasibilityReportDetail />} />

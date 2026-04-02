@@ -43,7 +43,8 @@ import {
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import docTransLogo from "@/data/images/doctrans.png";
-import functionalDocTrans from "@/data/images/functional doctrans.png";
+import docTransCloudArch from "@/CLOUD ARCHITECTURE/DOCTRANS.png";
+import ImageLightbox from "@/components/ImageLightbox";
 
 // Core Features
 const coreFeatures = [
@@ -692,6 +693,23 @@ const DocTrans = () => {
               </motion.div>
             ))}
           </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="mt-12"
+          >
+            <h3 className="font-display font-bold text-xl text-foreground mb-4 text-center">
+              Cloud Architecture Diagram
+            </h3>
+            <ImageLightbox
+              src={docTransCloudArch}
+              alt="DocTrans Cloud Architecture Diagram"
+              className="max-w-4xl mx-auto"
+            />
+          </motion.div>
         </div>
       </section>
 
@@ -825,43 +843,6 @@ const DocTrans = () => {
                 </div>
               </div>
             </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Functional Diagram Section */}
-      <section className="section-white py-24 lg:py-32">
-        <div className="container mx-auto px-4 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center max-w-3xl mx-auto mb-16"
-          >
-            <span className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-semibold mb-6 uppercase tracking-wide">
-              Functional Diagram
-            </span>
-            <h2 className="text-3xl lg:text-5xl font-display font-bold text-foreground mb-6">
-              System Architecture Overview
-            </h2>
-            <p className="text-muted-foreground text-lg">
-              Comprehensive view of DocTrans functional components and data flow
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="glass-card p-8 lg:p-12 bg-white"
-          >
-            <img
-              src={functionalDocTrans}
-              alt="Functional Diagram"
-              className="w-full h-auto rounded-lg"
-            />
           </motion.div>
         </div>
       </section>

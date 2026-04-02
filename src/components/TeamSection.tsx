@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Linkedin, Twitter, Mail } from "lucide-react";
+import prakhyathPhoto from "@/data/people/Prakhyath.png";
 import harshitPhoto from "@/data/people/Harshit.png";
 import snehalPhoto from "@/data/people/Snehal.png";
 
@@ -10,6 +10,7 @@ const teamMembers = [
     name: "Prakhyath Rai",
     role: "Team Manager",
     department: "Technology Integration and Transformation",
+    image: prakhyathPhoto,
     email: "prrai@eg.dk",
     bio: "Leading AI initiatives and technology integration",
   },
@@ -96,20 +97,7 @@ const TeamSection = () => {
                     alt={member.name}
                     className="w-full aspect-square object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  
-                  {/* Social links */}
-                  <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-3 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0">
-                    <a href="#" className="w-9 h-9 rounded-full bg-accent flex items-center justify-center text-accent-foreground hover:scale-110 transition-transform">
-                      <Linkedin className="w-4 h-4" />
-                    </a>
-                    <a href="#" className="w-9 h-9 rounded-full bg-accent flex items-center justify-center text-accent-foreground hover:scale-110 transition-transform">
-                      <Twitter className="w-4 h-4" />
-                    </a>
-                    <a href="#" className="w-9 h-9 rounded-full bg-accent flex items-center justify-center text-accent-foreground hover:scale-110 transition-transform">
-                      <Mail className="w-4 h-4" />
-                    </a>
-                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
 
                 {/* Info */}

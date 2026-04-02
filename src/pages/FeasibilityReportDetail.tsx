@@ -2,11 +2,12 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { useParams, Link, Navigate } from "react-router-dom";
-import { 
-  ArrowLeft, 
+import {
+  ArrowLeft,
   AlertTriangle,
   Shield,
   CheckCircle,
+  XCircle,
   Mail,
   Eye
 } from "lucide-react";
@@ -482,13 +483,17 @@ const FeasibilityReportDetail = () => {
             </motion.div>
 
             <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center">
-              <button
-                onClick={() => setShowPdfViewer(true)}
-                className="btn-accent px-8 py-4 inline-flex items-center justify-center gap-2"
-              >
-                <Eye className="w-5 h-5" />
-                View PDF Document
-              </button>
+              {report.pdfPath ? (
+                <a
+                  href={report.pdfPath}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-accent px-8 py-4 inline-flex items-center justify-center gap-2"
+                >
+                  <Eye className="w-5 h-5" />
+                  View PDF Document
+                </a>
+              ) : null}
               <Link
                 to="/#feasibilities"
                 className="px-8 py-4 rounded-lg bg-white/10 backdrop-blur-sm border border-white/30 text-primary-foreground font-semibold transition-all hover:bg-white/20 inline-flex items-center justify-center gap-2"

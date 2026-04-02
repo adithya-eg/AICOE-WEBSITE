@@ -1,4 +1,4 @@
-import { Bot, Brain, Receipt, TrendingDown, MessageSquare, FileText, Shield, Zap, LucideIcon } from "lucide-react";
+import { Brain, Receipt, TrendingDown, MessageSquare, FileText, Shield, LucideIcon } from "lucide-react";
 
 export interface AicoeBuInteraction {
   id: string;
@@ -23,86 +23,6 @@ export interface AicoeBuInteraction {
 
 export const aicoeBuInteractions: AicoeBuInteraction[] = [
   {
-    id: "jasmin-speech-to-text",
-    title: "Jasmin - Speech to Text - HealthCare | InfoDoc",
-    shortTitle: "Jasmin Speech to Text",
-    tagline: "Speech Recognition for Healthcare Documentation",
-    description: "Advanced speech-to-text solution for healthcare documentation and patient records.",
-    icon: MessageSquare,
-    category: "AI & Healthcare",
-    businessUnit: "HealthCare | InfoDoc",
-    preparedBy: "AI COE Team",
-    version: "v1.0",
-    pdfPath: "",
-    executiveSummary: "Speech to text for healthcare.",
-    objectives: ["Accurate transcription", "Integration with EHR"],
-    keyTechnologies: ["Speech recognition", "NLP"],
-    theoreticalBackground: ["ASR models"],
-    risks: [{ risk: "Accuracy", mitigation: "Model training" }],
-    limitations: ["Accents"],
-    conclusion: "Improves documentation."
-  },
-  {
-    id: "bolig-accounting-usecase",
-    title: "Bolig Accounting Usecase - Housing | Bolivian",
-    shortTitle: "Bolig Accounting",
-    tagline: "AI-Driven Accounting for Housing Management",
-    description: "Automated accounting solutions for housing management in Bolivian context.",
-    icon: Receipt,
-    category: "AI & Finance",
-    businessUnit: "Housing | Bolivian",
-    preparedBy: "AI COE Team",
-    version: "v1.0",
-    pdfPath: "",
-    executiveSummary: "Accounting automation for housing.",
-    objectives: ["Automate entries", "Compliance"],
-    keyTechnologies: ["AI", "Accounting software"],
-    theoreticalBackground: ["Automated accounting"],
-    risks: [{ risk: "Errors", mitigation: "Audits" }],
-    limitations: ["Local regulations"],
-    conclusion: "Streamlines operations."
-  },
-  {
-    id: "retail-chatbot",
-    title: "Retail Chatbot - Retail & Wholesale",
-    shortTitle: "Retail Chatbot",
-    tagline: "Intelligent Chatbot for Retail Customer Service",
-    description: "AI-powered chatbot for enhancing customer interactions in retail and wholesale.",
-    icon: Bot,
-    category: "AI & Customer Service",
-    businessUnit: "Retail & Wholesale",
-    preparedBy: "AI COE Team",
-    version: "v1.0",
-    pdfPath: "",
-    executiveSummary: "Chatbot for retail.",
-    objectives: ["Customer support", "Sales assistance"],
-    keyTechnologies: ["NLP", "Chatbot framework"],
-    theoreticalBackground: ["Conversational AI"],
-    risks: [{ risk: "Misunderstanding", mitigation: "Training" }],
-    limitations: ["Complex queries"],
-    conclusion: "Improves service."
-  },
-  {
-    id: "deviation-usecase",
-    title: "Deviation Usecase - ConstructionSite",
-    shortTitle: "Deviation Analysis",
-    tagline: "AI Analysis of Deviations in Construction Projects",
-    description: "Analyzing deviations in construction projects using AI for better project management.",
-    icon: FileText,
-    category: "AI & Project Management",
-    businessUnit: "ConstructionSite",
-    preparedBy: "AI COE Team",
-    version: "v1.0",
-    pdfPath: "",
-    executiveSummary: "Deviation analysis in construction.",
-    objectives: ["Identify deviations", "Risk mitigation"],
-    keyTechnologies: ["AI", "Data analysis"],
-    theoreticalBackground: ["Deviation detection"],
-    risks: [{ risk: "False alarms", mitigation: "Thresholds" }],
-    limitations: ["Data availability"],
-    conclusion: "Enhances project control."
-  },
-  {
     id: "routines-usecase",
     title: "AI Aided Routine Search (RoutinesBot) - ConstructionSite",
     shortTitle: "AI Aided Routine Search",
@@ -111,7 +31,7 @@ export const aicoeBuInteractions: AicoeBuInteraction[] = [
     icon: Brain,
     category: "AI & Operations",
     businessUnit: "ConstructionSite",
-    preparedBy: "AI COE Team",
+    preparedBy: "AICOE Team",
     version: "",
     pdfPath: "/pdfs/bu-collaborations/AI Aided Routine Search_Feasibility Report (1).pdf",
     executiveSummary: `The AI Aided Routine Search (RoutinesBot) is an intelligent chatbot system designed to revolutionize how construction companies access and utilize their organizational documents and routines. The system addresses critical challenges in document storage, retrieval, and access control by implementing advanced AI techniques including RAG (Retrieval-Augmented Generation), semantic search, and context-based filtering. By integrating Azure Blob Storage with AWS services, the solution provides secure, multilingual support for routine optimization across safety procedures, compliance rules, and operational workflows. The biggest challenge addressed is access control, ensuring users only see their authorized company and project data. The proposed solution leverages AWS Bedrock for AI processing and OpenSearch for vector-based search to deliver accurate, hallucination-free responses with direct document linking.`,
@@ -163,7 +83,7 @@ export const aicoeBuInteractions: AicoeBuInteraction[] = [
     icon: Shield,
     category: "AI & Legal",
     businessUnit: "Group Legal & Compliance",
-    preparedBy: "AI COE Team",
+    preparedBy: "AICOE Team",
     version: "v1.0",
     pdfPath: "/pdfs/bu-collaborations/TIA_DPA_Analysis_Agent.pdf",
     executiveSummary: `The DPA Analysis Agent is an AI-powered solution built on Microsoft Copilot Studio that automates the processing of Data Processing Addendums (DPAs) and Transfer Impact Assessments (TIAs). The agent reads legal documents, extracts precise information without hallucination, and populates TIA Excel templates automatically. This eliminates manual effort, improves accuracy, and ensures GDPR compliance for international data transfers. The system handles missing data tracking, maintains exact data extraction, and preserves Excel template structure while providing a user-friendly interface for legal teams.`,
@@ -220,7 +140,7 @@ export const aicoeBuInteractions: AicoeBuInteraction[] = [
 
 Key Focus Areas:
 • Healthcare & Citizen Welfare vertical
-• Industry & Trade Management sector  
+• Industry & Trade Management sector
 • Construction & Property Management domain
 
 Core Capabilities:
@@ -275,5 +195,92 @@ Solution Approach:
       "Model effectiveness depends on quality and completeness of historical data"
     ],
     conclusion: "By investing in this tailored Churn Prediction solution, each product division can proactively identify and retain valuable customers, fostering sustainable growth. Expected ROI includes up to 15% increase in renewal rates, reduced support costs through issue preemption, and boosted lifetime value via upsell opportunities. The implementation roadmap covers Data Collection & Preparation, Model Development & Validation per vertical, Pilot Program & Deployment, and Monitoring & Iteration phases."
-  }
+  },
+  {
+    id: "bolig-accounting-usecase",
+    title: "Bolig Accounting Usecase - Housing | Bolivian",
+    shortTitle: "Bolig Accounting",
+    tagline: "AI-Driven Accounting for Housing Management",
+    description: "Automated accounting solutions for housing management in Bolivian context.",
+    icon: Receipt,
+    category: "AI & Finance",
+    businessUnit: "Housing | Bolivian",
+    preparedBy: "AICOE Team",
+    version: "v1.0",
+    pdfPath: "/pdfs/bu-collaborations/Accounting - Bolig (1).pdf",
+    executiveSummary: "Accounting automation for housing.",
+    objectives: ["Automate entries", "Compliance"],
+    keyTechnologies: ["AI", "Accounting software"],
+    theoreticalBackground: ["Automated accounting"],
+    risks: [{ risk: "Errors", mitigation: "Audits" }],
+    limitations: ["Local regulations"],
+    conclusion: "Streamlines operations."
+  },
+  {
+    id: "deviation-usecase",
+    title: "Deviation Usecase - ConstructionSite",
+    shortTitle: "Deviation Analysis",
+    tagline: "AI Analysis of Deviations in Construction Projects",
+    description: "Analyzing deviations in construction projects using AI for better project management.",
+    icon: FileText,
+    category: "AI & Project Management",
+    businessUnit: "ConstructionSite",
+    preparedBy: "AICOE Team",
+    version: "v1.0",
+    pdfPath: "/pdfs/bu-collaborations/PII_Detection_Redaction_In_Image.pdf",
+    executiveSummary: "Deviation analysis in construction.",
+    objectives: ["Identify deviations", "Risk mitigation"],
+    keyTechnologies: ["AI", "Data analysis"],
+    theoreticalBackground: ["Deviation detection"],
+    risks: [{ risk: "False alarms", mitigation: "Thresholds" }],
+    limitations: ["Data availability"],
+    conclusion: "Enhances project control."
+  },
+  {
+    id: "jasmin-speech-to-text",
+    title: "Jasmin - Speech to Text - HealthCare | InfoDoc",
+    shortTitle: "Jasmin Speech to Text",
+    tagline: "AI-Powered Speech Recognition for Healthcare Documentation",
+    description: "An advanced AI speech-to-text assistant designed for healthcare professionals, enabling hands-free clinical documentation, accurate medical transcription, and seamless EHR integration.",
+    icon: MessageSquare,
+    category: "AI & Healthcare",
+    businessUnit: "HealthCare | InfoDoc",
+    preparedBy: "AICOE Team",
+    version: "v1.0",
+    pdfPath: "",
+    executiveSummary: "Jasmin is an AI-powered speech-to-text solution built for healthcare documentation workflows. It enables clinicians to dictate patient notes, referrals, and reports hands-free, automatically transcribing speech into structured medical text. The system integrates with Electronic Health Record (EHR) platforms to reduce administrative burden and improve documentation quality.",
+    objectives: [
+      "Accurate Medical Transcription - Achieve high transcription accuracy for clinical terminology, diagnoses, and treatment notes",
+      "EHR Integration - Seamlessly push transcribed text into existing Electronic Health Record systems",
+      "Hands-Free Documentation - Enable clinicians to document during consultations without interrupting patient interaction",
+      "Real-Time Processing - Provide low-latency speech recognition for live clinical environments",
+      "Multilingual Support - Support multiple languages and regional medical terminologies"
+    ],
+    keyTechnologies: [
+      "Automatic Speech Recognition (ASR) - Deep learning models trained on clinical vocabulary",
+      "Natural Language Processing - Post-processing for punctuation, formatting, and medical entity extraction",
+      "EHR API Integration - Standards-based connectivity (FHIR/HL7) to leading EHR platforms",
+      "Azure Speech Services - Cloud-based speech recognition with custom model support",
+      "Speaker Diarization - Distinguishes between clinician and patient voices in consultation recordings"
+    ],
+    theoreticalBackground: [
+      "ASR Models: Transformer-based acoustic models fine-tuned on medical speech datasets deliver superior accuracy for clinical terminology compared to generic speech recognition",
+      "Medical NLP: Post-processing pipelines apply clinical NLP to structure raw transcriptions into SOAP notes, referral letters, or discharge summaries",
+      "Speaker Diarization: Multi-speaker separation algorithms ensure patient-clinician dialogue is correctly attributed for accurate documentation",
+      "EHR Standards: FHIR and HL7 integration standards ensure interoperability with major EHR platforms without custom development overhead"
+    ],
+    risks: [
+      { risk: "Accent and dialect variability reducing accuracy", mitigation: "Fine-tune ASR models on diverse clinical speech datasets and provide manual correction fallback" },
+      { risk: "Medical privacy and HIPAA compliance", mitigation: "Enforce data encryption at rest and in transit, with no long-term audio storage" },
+      { risk: "Background noise in clinical environments", mitigation: "Apply noise-cancellation preprocessing and directional microphone recommendations" },
+      { risk: "Misrecognition of critical medication names or dosages", mitigation: "Implement a medical terminology dictionary and human review step for high-risk fields" }
+    ],
+    limitations: [
+      "Accuracy may decrease with heavy accents or non-standard medical terminology",
+      "Requires reliable internet connectivity for cloud-based processing",
+      "EHR integration scope depends on the specific EHR vendor and available APIs",
+      "Initial model training requires labelled clinical speech data from the target organization"
+    ],
+    conclusion: "Jasmin significantly reduces the administrative burden on healthcare professionals by automating clinical documentation through AI-powered speech recognition. By integrating directly with EHR platforms and supporting medical-grade vocabulary, it enables clinicians to focus on patient care while ensuring accurate, structured records. The solution is production-ready with manageable integration complexity."
+  },
 ];

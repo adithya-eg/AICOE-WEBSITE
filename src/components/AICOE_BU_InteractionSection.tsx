@@ -23,13 +23,13 @@ const AICOE_BU_InteractionSection = () => {
           className="text-center max-w-3xl mx-auto mb-16"
         >
           <span className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-semibold mb-6 uppercase tracking-wide">
-            BU &lt;&gt; AI COE Engagements
+            BU &lt;&gt; AICOE Engagements
           </span>
           <h2 className="text-3xl lg:text-5xl font-display font-bold text-foreground mb-6">
             Collaborative <span className="text-gradient">Innovations</span>
           </h2>
           <p className="text-muted-foreground text-lg">
-            Explore our engagements and collaborations between Business Units and AI COE
+            Explore our engagements and collaborations between Business Units and AICOE
           </p>
         </motion.div>
 
