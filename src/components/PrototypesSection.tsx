@@ -72,6 +72,10 @@ const PrototypesSection = () => {
                       ? "/invoice-assistant"
                       : prototype.id === "on-prem-chatbot-danish-defense"
                       ? "/feasibility/on-prem-chatbot-v1"
+                      : prototype.id === "churn-prediction-nordic"
+                      ? "/bu-interaction/churn-prediction-nordic"
+                      : prototype.id === "routines-usecase"
+                      ? "/bu-interaction/routines-usecase"
                       : `/prototype/${prototype.id}`
                   }
                   className="inline-flex items-center gap-2 text-accent font-semibold text-sm group-hover:gap-3 transition-all mt-auto"

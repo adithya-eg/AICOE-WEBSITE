@@ -8,7 +8,6 @@ import aiAssistantUI from "@/data/images/AI-ASSISTANT 1.png";
 import jasminBanner from "@/data/images/JASMIN BANNER.png";
 import jiraBanner from "@/data/images/JIRA BANNER MAIN.png";
 import docTransImage from "@/data/images/doctrans.png";
-import pitchSyncUI from "@/data/images/Pitchsyn ui.png";
 
 const products = [
   {
@@ -53,7 +52,6 @@ const products = [
     description: "Create, refine, and evaluate startup pitches using automated multi-agent analysis. Guides users through structured phases, scores answers in real time, and generates investor-ready pitch content.",
     icon: Zap,
     features: ["Phase Workflow", "Real-time Scoring", "Pitch Generation"],
-    image: pitchSyncUI,
     link: "/pitch-sync",
   },
   {
@@ -125,10 +123,58 @@ const ProductsSection = () => {
                   </div>
                 )}
 
-                {/* Icon — shown when no image */}
+                {/* Rich banner — shown when no image */}
                 {!product.image && (
-                  <div className="w-14 h-14 rounded-lg bg-gradient-primary flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                    <product.icon className="w-7 h-7 text-primary-foreground" />
+                  <div className="mb-6 -mx-6 -mt-6 lg:-mx-8 lg:-mt-8 h-40 relative overflow-hidden rounded-t-lg"
+                    style={{ background: "linear-gradient(135deg, #7c3aed 0%, #a855f7 35%, #f97316 75%, #fb923c 100%)" }}
+                  >
+                    {/* Dot grid */}
+                    <div className="absolute inset-0 opacity-20"
+                      style={{
+                        backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.7) 1px, transparent 1px)",
+                        backgroundSize: "18px 18px",
+                      }}
+                    />
+                    {/* Decorative blobs */}
+                    <div className="absolute -top-6 -right-6 w-28 h-28 rounded-full bg-white/10" />
+                    <div className="absolute -bottom-8 left-8 w-20 h-20 rounded-full bg-black/10" />
+                    <div className="absolute top-4 left-1/2 w-6 h-6 rounded-full bg-white/15 border border-white/20" />
+
+                    {/* Content */}
+                    <div className="absolute inset-0 flex items-center justify-between px-6">
+                      {/* Left: text */}
+                      <div className="flex-1 pr-4">
+                        <span className="text-[10px] font-bold uppercase tracking-widest text-white/60 bg-white/10 border border-white/20 px-2 py-0.5 rounded-full">
+                          AI Startup Platform
+                        </span>
+                        <h3 className="text-white font-black text-2xl leading-tight mt-2 drop-shadow">
+                          Pitch‑Sync
+                        </h3>
+                        <p className="text-white/75 text-xs mt-1 leading-relaxed">
+                          From idea to investor-ready
+                        </p>
+                        {/* Mini score bar */}
+                        <div className="flex items-center gap-1 mt-2">
+                          {[100, 75, 90, 60, 85].map((w, i) => (
+                            <div key={i} className="h-1 rounded-full bg-white/40" style={{ width: `${w * 0.2}px` }} />
+                          ))}
+                        </div>
+                      </div>
+                      {/* Right: icon stack */}
+                      <div className="flex flex-col items-center gap-2 flex-shrink-0">
+                        <div className="w-14 h-14 rounded-2xl bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                          <product.icon className="w-7 h-7 text-white" strokeWidth={1.5} />
+                        </div>
+                        {/* Tiny bars representing scoring */}
+                        <div className="flex items-end gap-0.5">
+                          {[2, 3, 2, 4, 3].map((h, i) => (
+                            <div key={i} className="w-1.5 rounded-sm bg-white/50" style={{ height: `${h * 4}px` }} />
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                    {/* Bottom accent line */}
+                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-yellow-300 via-orange-300 to-purple-400" />
                   </div>
                 )}
 
