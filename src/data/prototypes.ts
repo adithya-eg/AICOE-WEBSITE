@@ -1,4 +1,4 @@
-import { Bot, Database, Receipt, TrendingDown, Brain, LucideIcon } from "lucide-react";
+import { Bot, Database, Receipt, TrendingDown, LucideIcon } from "lucide-react";
 
 export interface Prototype {
   id: string;
@@ -192,56 +192,5 @@ The system continues to operate entirely within the organisation's on-premises i
       "Model effectiveness depends on quality and completeness of historical data"
     ],
     conclusion: "By investing in this tailored Churn Prediction solution, each product division can proactively identify and retain valuable customers, fostering sustainable growth. Expected ROI includes up to 15% increase in renewal rates, reduced support costs through issue preemption, and boosted lifetime value via upsell opportunities."
-  },
-  {
-    id: "routines-usecase",
-    title: "AI Aided Routine Search (RoutinesBot) - ConstructionSite",
-    shortTitle: "AI Aided Routine Search",
-    tagline: "Intelligent Document Retrieval and Optimisation for Construction Routines",
-    description: "An AI-powered chatbot system that optimises access to organisational documents and routines in construction companies, providing fast, secure, and context-aware information retrieval with strict role-based access control.",
-    icon: Brain,
-    category: "AI & Operations",
-    preparedBy: "AICOE Team",
-    version: "v1.0",
-    pdfPath: "/pdfs/bu-collaborations/AI Aided Routine Search_Feasibility Report (1).pdf",
-    executiveSummary: `The AI Aided Routine Search (RoutinesBot) is an intelligent chatbot system designed to revolutionise how construction companies access and utilise their organisational documents and routines. The system addresses critical challenges in document storage, retrieval, and access control by implementing advanced AI techniques including RAG (Retrieval-Augmented Generation), semantic search, and context-based filtering. By integrating Azure Blob Storage with AWS services, the solution provides secure, multilingual support for routine optimisation across safety procedures, compliance rules, and operational workflows. The biggest challenge addressed is access control, ensuring users only see their authorised company and project data.`,
-    objectives: [
-      "Chat-Based Interface - Enable users to interact with documents using natural language chat",
-      "Automated Ingestion - Automatically add new documents to the knowledge base without manual intervention",
-      "Security Enforcement - Implement strict access controls based on company, project, and user role",
-      "Multilingual Support - Provide support for English and Norwegian language queries",
-      "Document Linking - Deliver answers with direct links to original source documents",
-      "Contextual Access - Filter results based on company ID, project ID, and user permissions"
-    ],
-    keyTechnologies: [
-      "AWS Bedrock - Hosts AI models for response generation and embedding creation",
-      "OpenSearch - Vector database for storing embeddings and performing similarity search",
-      "RAG (Retrieval-Augmented Generation) - Combines retrieval and generation for accurate answers",
-      "Embeddings - Converts text into vectors for semantic search capabilities",
-      "Azure Blob Storage - Primary storage for organisational documents",
-      "Amazon S3 - Temporary storage for cross-cloud data processing"
-    ],
-    theoreticalBackground: [
-      "RAG Pipeline: Retrieval-Augmented Generation works by first retrieving relevant data from the knowledge base, then using AI to generate accurate answers based only on retrieved content, eliminating hallucinations",
-      "Semantic Search: Goes beyond keyword matching to understand the meaning and context of user queries, providing more relevant results",
-      "Vector Embeddings: Text is converted into numerical vectors that capture semantic meaning, enabling similarity-based search rather than exact keyword matches",
-      "Context-Based Filtering: Results are filtered based on organisational hierarchy (company → project → user role) to ensure data security and relevance",
-      "Step-by-Step RAG Execution: User query → Vector conversion → Similarity search → Content retrieval → AI generation → Final answer with citations"
-    ],
-    risks: [
-      { risk: "AI Hallucination", mitigation: "Implement grounded responses using only retrieved data, add citations to source documents, and use prompt engineering to control AI behaviour" },
-      { risk: "Access Control Failures", mitigation: "Multi-layer validation including bearer tokens, API keys, and role-based filtering at database and application levels" },
-      { risk: "Cross-Cloud Integration Issues", mitigation: "Secure connection protocols between Azure and AWS, with error handling and retry mechanisms for data transfer" },
-      { risk: "Multilingual Processing Inaccuracies", mitigation: "Test and validate AI models for Norwegian language support, implement fallback mechanisms for unsupported queries" },
-      { risk: "Document Processing Delays", mitigation: "Automated ingestion pipelines with status tracking, background processing, and user notifications for completion" }
-    ],
-    limitations: [
-      "Documents must be stored as HTML in Azure Blob Storage for current processing pipeline",
-      "Cross-cloud architecture requires secure connection management between Azure and AWS",
-      "Multilingual support currently limited to English and Norwegian",
-      "New documents require processing time before becoming searchable",
-      "System depends on AWS Bedrock and OpenSearch availability"
-    ],
-    conclusion: "The AI Aided Routine Search (RoutinesBot) represents a significant advancement in organisational document management for construction companies. By implementing RAG-based AI with robust security controls, the system delivers faster information retrieval, improved productivity, and better compliance while maintaining strict access controls."
   }
 ];

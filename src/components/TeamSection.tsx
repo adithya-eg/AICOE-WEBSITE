@@ -4,7 +4,7 @@ import { useRef } from "react";
 import prakhyathPhoto from "@/data/people/Prakhyath.png";
 import harshitPhoto from "@/data/people/Harshit.png";
 import snehalPhoto from "@/data/people/Snehal.png";
-import karthikaPhoto from "@/data/people/karthika.jpg";
+import karthikaPhoto from "@/data/people/karthik.png";
 
 const teamMembers = [
   {
@@ -32,6 +32,7 @@ const teamMembers = [
     name: "Karthika Ravichandran",
     role: "AI/ML Engineer",
     image: karthikaPhoto,
+    objectPosition: "top center",
     bio: "AI/ML Engineer focused on innovative solutions",
   },
   {
@@ -98,6 +99,7 @@ const TeamSection = () => {
                     src={member.image}
                     alt={member.name}
                     className="w-full aspect-square object-cover transition-transform duration-500 group-hover:scale-105"
+                    style={(member as any).objectPosition ? { objectPosition: (member as any).objectPosition } : {}}
                   />
                 </div>
 

@@ -35,6 +35,9 @@ const products = [
     icon: MessageSquare,
     features: ["Speech-to-Text", "AI Summarization", "Clinical Notes"],
     image: jasminBanner,
+    imageFit: "contain" as const,
+    imageBg: "#0a2744",
+    noPad: true,
     link: "/jasmin",
   },
   {
@@ -118,7 +121,11 @@ const ProductsSection = () => {
                     <img
                       src={product.image}
                       alt={product.name}
-                      className={`w-full rounded-t-lg ${ (product as any).imageFit === "contain" ? "h-44 object-contain p-6" : "h-40 object-cover" }`}
+                      className={`w-full rounded-t-lg ${
+                        (product as any).imageFit === "contain"
+                          ? `h-44 object-contain${ (product as any).noPad ? "" : " p-6" }`
+                          : "h-40 object-cover"
+                      }`}
                     />
                   </div>
                 )}
