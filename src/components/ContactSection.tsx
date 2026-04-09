@@ -16,6 +16,16 @@ const ContactSection = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    const subject = encodeURIComponent(
+      `AICOE Website Enquiry from ${formData.name}${formData.company ? ` (${formData.company})` : ""}`
+    );
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\nCompany: ${formData.company || "N/A"}\n\nMessage:\n${formData.message}`
+    );
+
+    window.open(`mailto:USR_aicoe@eg.dk?subject=${subject}&body=${body}`, "_blank");
+
     setIsSubmitted(true);
     setTimeout(() => setIsSubmitted(false), 3000);
     setFormData({ name: "", email: "", company: "", message: "" });
@@ -25,8 +35,8 @@ const ContactSection = () => {
     {
       icon: Mail,
       label: "Email",
-      value: "aicoe@egindia.com",
-      href: "mailto:aicoe@egindia.com",
+      value: "USR_aicoe@eg.dk",
+      href: "mailto:USR_aicoe@eg.dk",
     },
     {
       icon: MapPin,

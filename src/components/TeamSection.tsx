@@ -4,6 +4,7 @@ import { useRef } from "react";
 import prakhyathPhoto from "@/data/people/Prakhyath.png";
 import harshitPhoto from "@/data/people/Harshit.png";
 import snehalPhoto from "@/data/people/Snehal.png";
+import karthikaPhoto from "@/data/people/karthika.jpg";
 
 const teamMembers = [
   {
@@ -30,6 +31,7 @@ const teamMembers = [
   {
     name: "Karthika Ravichandran",
     role: "AI/ML Engineer",
+    image: karthikaPhoto,
     bio: "AI/ML Engineer focused on innovative solutions",
   },
   {
@@ -91,13 +93,12 @@ const TeamSection = () => {
             >
               <div className="glass-card h-full bg-white/95 overflow-hidden hover:shadow-2xl transition-all duration-300 flex flex-col">
                 {/* Image */}
-                <div className="relative overflow-hidden">
+                <div className="overflow-hidden">
                   <img
                     src={member.image}
                     alt={member.name}
                     className="w-full aspect-square object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
 
                 {/* Info */}

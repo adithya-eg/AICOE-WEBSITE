@@ -29,7 +29,7 @@ const socialLinks = [
   { icon: Linkedin, href: "#", label: "LinkedIn" },
   { icon: Twitter, href: "#", label: "Twitter" },
   { icon: Youtube, href: "#", label: "YouTube" },
-  { icon: Mail, href: "mailto:aicoe@egindia.com", label: "Email" },
+  { icon: Mail, href: "mailto:USR_aicoe@eg.dk", label: "Email" },
 ];
 
 const Footer = () => {

@@ -813,12 +813,12 @@ const PitchSync = () => {
                 Please reach out to the following for questions or feedback:
               </p>
               <motion.a
-                href="mailto:aicoe@egindia.com"
+                href="mailto:USR_aicoe@eg.dk"
                 className="inline-flex items-center gap-2 text-accent hover:text-accent/80 transition-colors text-lg font-medium"
                 whileHover={{ scale: 1.05 }}
               >
                 <Mail className="w-5 h-5" />
-                aicoe@egindia.com
+                USR_aicoe@eg.dk
               </motion.a>
             </motion.div>
 
